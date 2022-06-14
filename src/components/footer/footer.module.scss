@@ -1,0 +1,15 @@
+.container{
+    @apply flex justify-between
+}
+
+.text{
+    @apply font-bold text-color-foot-txt self-center text-foot-txt
+}
+
+.by{
+    @apply font-bold text-color-foot-by text-foot-by
+}
+
+.bicog{
+    @apply bg-color-foot-icon-set-bg text-color-foot-icon-set-txt shadow-foot-icon-set rounded-foot-icon-set border-foot-icon-set text-foot-icon-set p-foot-icon-set-p
+}

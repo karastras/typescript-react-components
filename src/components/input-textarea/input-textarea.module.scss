@@ -1,0 +1,15 @@
+.label {
+  @apply absolute -top-txtarea-lbl-t left-txtarea-lbl-l bg-color-txtarea-lbl-bg px-txtarea-lbl-px py-txtarea-lbl-py rounded-txtarea
+}
+
+.container {
+  @apply relative 
+}
+
+.input {
+  @apply w-full border-txtarea-input-brd p-txtarea-input-p resize-none border-color-txtarea-brd focus:border-color-txtarea-brd-foc appearance-none outline-none rounded-txtarea
+}
+
+.input:focus-within ~ .label {
+    @apply text-color-txtarea-foc-with-lbl
+}

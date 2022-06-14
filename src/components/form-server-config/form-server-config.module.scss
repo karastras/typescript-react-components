@@ -1,0 +1,20 @@
+.form{
+  @apply flex flex-col gap-formservconf-form
+}
+
+.buttons{
+  @apply flex gap-formservconf-btns
+}
+
+.defautButton{
+  @apply flex
+}
+
+.error {
+  @apply text-color-formservconf-errtxt font-formservconf-errtxt text-formservconf-errtxt
+}
+
+.success {
+  @apply text-color-formservconf-succtxt text-formservconf-succtxt
+}
+

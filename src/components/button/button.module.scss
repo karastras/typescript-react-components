@@ -1,0 +1,19 @@
+.container {
+  @apply relative w-full h-full
+}
+
+.button {
+  @apply text-color-btn-txt h-full w-full font-btn-txt py-btn-py px-btn-px shadow-btn rounded-btn border-btn border-color-btn-brd
+}
+
+.primary {
+  @apply bg-color-btn-bg-primary disabled:opacity-btn-primary
+}
+
+.secondary {
+  @apply bg-color-btn-bg-secondary disabled:opacity-btn-secondary
+}
+
+.loadingLogo {
+  @apply absolute top-btn-load-t left-btn-load-l text-btn-load text-color-btn-logo animate-btn-logo
+}

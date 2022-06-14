@@ -1,0 +1,7 @@
+.form{
+    @apply flex flex-col gap-formloc
+}
+
+.error{
+    @apply text-color-formloc-errtxt font-formloc-errtxt text-formloc-errtxt
+}

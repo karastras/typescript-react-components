@@ -1,0 +1,7 @@
+.back{
+    @apply flex w-full pr-btnback-pr bg-color-btnback-bg text-color-btnback-txt font-btnback-txt rounded-btnback border-btnback border-color-btnback-brd shadow-btnback
+}
+
+.arrowIcon {
+    @apply text-btnback-icon text-color-btnback-icon
+}

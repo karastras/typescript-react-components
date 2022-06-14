@@ -1,0 +1,7 @@
+.container {
+    @apply fixed z-bcdscan inset-bcdscan bg-color-bcdscan-bg bg-opacity-bcdscan flex flex-col justify-center gap-bcdscan
+}
+
+.cancelButton {
+    @apply w-bcdscan self-center
+}

@@ -1,0 +1,47 @@
+.inputContainer {
+  @apply w-full flex flex-col gap-inptxt-container
+}
+
+.container {
+  @apply relative flex justify-between border-inptxt border-color-inptxt-brd focus-within:border-color-inptxt-brd-foc z-inptxt-container bg-color-inptxt-bg rounded-inptxt text-color-inptxt-txt
+}
+
+input:focus-within ~ label, input:not(:placeholder-shown) ~ label {
+  @apply transform scale-75 -translate-y-4 z-0 ml-3 px-1 py-0
+}
+
+input:focus-within ~ label {
+  @apply text-color-inptxt-lbl-foc
+}
+
+.inputField {
+  @apply block p-inptxt-field-p w-full text-inptxt appearance-none z-inptxt-field focus:outline-none bg-transparent
+}
+
+.pwdIcon {
+  @apply absolute right-inptxt-pwd-r top-inptxt-pwd-t text-inptxt-pwd text-color-inptxt-pwd
+}
+
+.scanIcon {
+  @apply absolute right-inptxt-scan-r top-inptxt-scan-t text-inptxt-scan text-color-inptxt-scan
+}
+
+.checkIcon{
+  @apply absolute right-inptxt-check-r top-inptxt-check-t text-inptxt-check text-color-inptxt-check
+}
+
+.pwdAndScanIcon{
+  @apply absolute right-inptxt-pwd-scan-r top-inptxt-pwd-scan-t text-inptxt-pwd-scan text-color-inptxt-pwd-scan
+}
+
+.checkAndScanIcon{
+  @apply absolute right-inptxt-check-scan-r top-inptxt-check-scan-t text-inptxt-check-scan text-color-inptxt-check-scan
+}
+
+.inputLabel {
+  @apply absolute top-inptxt-lbl-t p-inptxt-lbl-p text-inptxt z-inptxt-lbl duration-inptxt-lbl origin-0 bg-color-inptxt-lbl-bg rounded-inptxt text-color-inptxt-lbl
+}
+
+.inputError {
+  @apply text-color-inptxt-errtxt font-inptxt-errtxt text-inptxt-errtxt
+}

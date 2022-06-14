@@ -1,0 +1,8 @@
+{
+  "server": {
+    "protocol": false,
+    "serverURL": "172.16.47.3",
+    "port": "8084"
+  },
+  "default_lang": "ro"
+}

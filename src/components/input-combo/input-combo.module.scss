@@ -1,0 +1,43 @@
+.comboLabel {
+  @apply absolute left-inpcomb-l top-inpcomb-t bg-color-inpcomb-bg ml-3 px-1 py-0 rounded-inpcomb
+}
+
+.comboContainer {
+  @apply relative
+}
+
+.comboInputWrapper {
+  @apply relative
+}
+
+.comboButtonClosed, .comboButtonOpened {
+  @apply absolute right-2 top-2.5 cursor-none
+}
+
+.comboButtonClosed{
+  @apply transition rotate-0
+}
+
+.comboButtonOpened{
+  @apply transition rotate-180
+}
+
+.comboInput {
+  @apply w-full p-small border-inpcomb border-color-septenary focus:border-color-inpcomb-brd-foc appearance-none outline-none focus-within:border-color-inpcomb-brd-foc rounded-inpcomb
+}
+
+.comboInput:focus-within ~ .comboLabel {
+  @apply text-color-inpcomb-text-foc
+}
+
+.comboDropdown{
+  @apply bg-color-inpcomb-bg absolute left-0 right-0 max-h-56 border-inpcomb overflow-y-auto border-color-inpcomb-brd rounded-inpcomb shadow-2xl px-small z-10
+}
+
+.comboDropdowElement{
+  @apply py-6 flex items-center w-full hover:bg-gray-50
+}
+
+.inputError {
+  @apply text-color-inpcomb-errtxt font-inpcomb-errtxt text-inpcomb-errtxt mt-inpcomb-errtxt-mt
+}

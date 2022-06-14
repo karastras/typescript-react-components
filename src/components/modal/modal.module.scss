@@ -1,0 +1,23 @@
+.modalBackDrop {
+  @apply fixed z-modal-backdrop inset-modal-backdrop bg-color-modal-backdrop-bg bg-opacity-modal-backdrop-bg px-modal-backdrop-px overflow-y-auto h-full w-full 
+}
+
+.modalHidden {
+  @apply hidden
+}
+
+.modalContainer {
+  @apply relative top-modal-container-t mx-modal-container-mx rounded-modal-container bg-color-modal-container-bg max-w-modal-container
+}
+
+.modalHeader {
+  @apply flex justify-between items-center bg-color-modal-header-bg text-color-modal-header-txt text-modal-header-txt rounded-t-modal-header-t px-modal-header-px py-modal-header-py
+}
+
+.modalBody {
+  @apply max-h-modal-body overflow-y-scroll p-modal-body
+}
+
+.modalFooter {
+  @apply px-modal-footer-px py-modal-footer-py border-t-modal-footer-t border-t-color-modal-footer-brd-t flex gap-modal-footer
+}

@@ -1,0 +1,15 @@
+.checkboxInput {
+  @apply h-chbox w-chbox 
+}
+
+.checkboxLabel {
+  @apply inline-flex items-center gap-chbox-lbl
+}
+
+.labeltext {
+  @apply text-color-chbox-txt font-chbox-txt text-chbox-txt
+}
+
+.checkboxError {
+  @apply text-color-chbox-errtxt font-chbox-errtxt text-chbox-errtxt
+}

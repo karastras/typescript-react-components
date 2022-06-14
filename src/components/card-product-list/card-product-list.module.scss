@@ -1,0 +1,35 @@
+.cardList{
+    @apply  flex flex-col gap-cardprodlist p-cardprodlist-p relative 
+}
+
+.cardSingle{
+    @apply flex flex-col gap-cardprodlist p-cardprodlist-p relative rounded-cardprodlist border-cardprodlist border-color-cardprodlist-brd bg-color-cardprodlist-bg 
+}
+
+.denomination{
+    @apply font-bold text-color-cardprodlist-txt text-center text-cardprodlist-name
+}
+
+.cardListDelete{
+    @apply absolute top-cardprodlist-delete-list-t right-cardprodlist-delete-list-r
+}
+
+.cardSingleDelete{
+    @apply absolute top-cardprodlist-delete-single-t right-cardprodlist-delete-single-r
+}
+
+.bold {
+    @apply font-cardprodlist-element-description text-center
+}
+
+.quantityContent{
+    @apply flex 
+}
+
+.quantity{
+    @apply mr-cardprodlist-element-quantity-r
+}
+
+.number{
+    @apply font-cardprodlist-element-quantity
+}

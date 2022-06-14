@@ -1,0 +1,51 @@
+.container {
+    @apply overflow-auto
+}
+
+.table {
+    @apply w-tab-container border-collapse rounded-tab-table overflow-hidden
+}
+
+.thead {
+    @apply bg-color-tab-thead-bg
+}
+
+.th {
+    @apply text-tab-th-txt font-tab-th text-color-tab-th-txt py-tab-th-py text-center border-l-tab-th-brd-l
+}
+
+.th:first-child {
+    @apply border-tab-th-first-brd
+}
+
+.tr {
+    @apply bg-color-tab-tr-bg border-t-tab-tr-brd-t border-color-tab-tr-brd
+}
+
+.tr:first-child {
+    @apply border-tab-tr-first-brd
+}
+
+.td {
+    @apply py-tab-td-py px-tab-td-px text-tab-td-txt font-tab-td text-color-tab-td-txt border-l-tab-td-brd-l border-color-tab-td-brd
+}
+
+.td:first-child {
+    @apply border-tab-td-first-brd
+}
+
+.td:last-child {
+    @apply bg-color-tab-td-last-bg
+}
+
+.tdquantity{
+    @apply bg-color-tab-td-quant-bg
+}
+
+.input {
+    @apply w-tab-input text-center
+}
+
+.bix {
+    @apply flex justify-center text-tab-icon-txt text-color-tab-icon-del-txt bg-color-tab-icon-del-bg
+}

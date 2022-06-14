@@ -1,0 +1,7 @@
+.container{
+    @apply flex flex-col p-cardlocdetails-p rounded-cardlocdetails border-cardlocdetails border-color-cardlocdetails-brd bg-color-cardlocdetails-bg items-center
+}
+
+.element{
+    @apply font-cardlocdetails-element-txt ml-cardlocdetails-element-ml
+}

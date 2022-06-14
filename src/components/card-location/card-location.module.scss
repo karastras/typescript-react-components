@@ -1,0 +1,15 @@
+.card{
+    @apply flex flex-col gap-cardloc-card bg-color-cardloc-bg pt-cardloc-pt pb-cardloc-pb px-cardloc-px border-cardloc border-color-cardloc-brd rounded-cardloc
+}
+
+.list {
+    @apply flex justify-center flex-wrap gap-cardloc-list text-center 
+}
+
+.element {
+    @apply font-cardloc-element-txt
+}
+
+.editButton{
+    @apply w-cardloc-btn self-center
+}

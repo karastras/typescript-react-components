@@ -1,0 +1,27 @@
+.container {
+    @apply flex justify-between
+}
+
+.left {
+    @apply flex
+}
+
+.username{
+    @apply self-center text-head-user text-color-head-user font-head-user
+}
+
+.biUser{
+    @apply text-color-head-icon-user-txt text-head-icon-user-txt
+}
+
+.wifiOff{
+    @apply text-color-head-icon-wifioff-txt text-head-icon-wifioff-txt
+}
+
+.wifiOn{
+    @apply text-color-head-icon-wifion-txt text-head-icon-wifion-txt
+}
+
+.bipower{
+    @apply bg-color-head-icon-pwr-bg shadow-head-icon-pwr rounded-head-icon-pwr text-color-head-icon-pwr-txt border-head-icon-pwr border-color-head-icon-power-brd text-head-icon-pwr-txt p-head-icon-pwr-p
+}

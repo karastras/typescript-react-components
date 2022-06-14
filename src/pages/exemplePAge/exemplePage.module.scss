@@ -1,0 +1,23 @@
+.container {
+    @apply flex flex-col gap-4 p-4
+}
+
+.button {
+    @apply border-2 border-color-primary shadow-btn bg-color-octonary text-color-quaternary rounded-btn p-1
+}
+
+.back{
+    @apply max-w-min
+}
+
+.buttons {
+    @apply flex flex-col gap-4
+}
+
+.bold {
+    @apply font-bold text-medium
+}
+
+.import {
+    @apply flex gap-2 flex-wrap justify-center
+}

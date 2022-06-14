@@ -1,0 +1,19 @@
+.simpleBtn {
+  @apply p-RBC-simplebtn-p text-center text-color-RBC-simplebtn-txt bg-color-RBC-simplebtn-bg border-RBC-simplebtn rounded-RBC-simplebtn shadow-RBC-simplebtn 
+}
+
+.cardWithDetails {
+  @apply flex gap-RBC-cardetails px-RBC-cardetails-px py-RBC-cardetails-py bg-color-RBC-cardetails-bg border-RBC-cardetails border-color-RBC-cardetails-brd rounded-RBC-cardetails shadow-RBC-cardetails 
+}
+
+.container {
+  @apply flex flex-col justify-center gap-RBC-container
+}
+
+.title {
+  @apply text-RBC-container
+}
+
+.description {
+  @apply text-RBC-description
+}
