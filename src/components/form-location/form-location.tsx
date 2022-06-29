@@ -75,6 +75,22 @@ export type FormLocationProps = {
  * couleur du bouton de scan
  */
  scanButtonColor?: 'primary' | 'secondary'
+  /**
+   * Défini si le bouton est actif
+   */
+ disabled?: boolean
+  /**
+   * afficher un spinner sur le bouton
+   */
+ loading?: boolean
+ /**
+   * id du bouton
+   */
+  buttonId?: string
+  /**
+   * id du formulaire
+   */
+  formId?: string
 }
 
 /**
@@ -95,6 +111,10 @@ export type FormLocationProps = {
  * @param isScanPalletPosition affiche le bouton de scan sur l'input PalletPosition
  * @param scanButtonLabel label du bouton de scan
  * @param scanButtonColor couleur du bouton de scan
+ * @param disabled Défini si le bouton est actif
+ * @param loading afficher un spinner sur le bouton
+ * @param buttonId id du bouton
+ * @param formId id du formulaire
  */
 export function FormLocation ({
                                    onSubmit,
@@ -111,7 +131,11 @@ export function FormLocation ({
                                    isScanArea,
                                    isScanPalletPosition,
                                    scanButtonLabel,
-                                   scanButtonColor
+                                   scanButtonColor,
+                                   disabled,
+                                   loading,
+                                   buttonId,
+                                   formId
                                  }: FormLocationProps) {
 
   // Paramètre du composant ---------------------------------------------------------------------
@@ -155,7 +179,7 @@ export function FormLocation ({
    * Render
    */
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+    <form onSubmit={handleSubmit(onSubmit)} id={formId} className={styles.form}>
       {isActivedScanner && scanButtonLabel && scanButtonColor &&
         < BarcodeScanner  buttonLabel={scanButtonLabel}
                           buttonColor={scanButtonColor}
@@ -208,7 +232,13 @@ export function FormLocation ({
       />
 
       {locationError && <p className={styles.error}>{locationError}</p>}
-      <Button type={buttonType} color={buttonColor} name={buttonName}/>
+      <Button type={buttonType} 
+              color={buttonColor} 
+              name={buttonName}
+              disabled={disabled}
+              loading={loading}
+              buttonId={buttonId}
+      />
     </form>
   )
 }

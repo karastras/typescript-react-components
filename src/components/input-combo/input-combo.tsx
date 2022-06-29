@@ -62,8 +62,6 @@ export function InputCombo ({
     const itemFound = items.find((item) => item?.id === value)
     if (itemFound) {
       setInputValue({name: itemFound.name, value: itemFound.id})
-    } else {
-      setInputValue({name: "", value: ""})
     }
   }, [value, items])
 
@@ -74,7 +72,7 @@ export function InputCombo ({
    */
   function handleStateChange(changes: any) {
     if (changes.selectedItem) {
-      setInputValue({name: "", value: changes.selectedItem})
+      setInputValue({name: changes.selectedItem.name, value: changes.selectedItem.id})
      if(onChange) onChange(changes.selectedItem.id)
     }
   }

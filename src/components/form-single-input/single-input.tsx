@@ -4,7 +4,6 @@ import {Button} from "../button/button";
 import {InputText} from '../inputText/input-text'
 import styles from './single-input.module.scss'
 
-
 export type SingleInputProps = {
   /**
  * fonction appelée après le click du bouton "Validation", les valeurs de l'input sont récupérées dans le data -> onSubmit(data)
@@ -46,6 +45,18 @@ export type SingleInputProps = {
  * affiche le bouton du scan sur l'input
  */
 scanButton?: boolean
+/**
+   * Défini si le bouton est actif
+   */
+ disabled?: boolean
+  /**
+   * afficher un spinner sur le bouton
+   */
+ loading?: boolean
+  /**
+   * id du bouton
+   */
+ buttonId?: string
 }
 
 /**
@@ -61,6 +72,9 @@ scanButton?: boolean
  * @param inputName le nom utilisé pour l'identifier au sein d'un form useform
  * @param onScan action du scan
  * @param scanButton affiche le bouton du scan sur l'input
+ * @param loading affiche un spinner de loading
+ * @param disabled Défini si le bouton est actif
+ * @param buttonId id du bouton
  */
 export function SingleInput({
   inputLabel,
@@ -72,7 +86,10 @@ export function SingleInput({
   errors,
   control,
   scanButton,
-  onScan
+  onScan,
+  loading,
+  disabled,
+  buttonId
 }: SingleInputProps) {
 
   /**
@@ -95,7 +112,12 @@ export function SingleInput({
         defaultValue={""}
       />
       {errorMessage && <p className={styles.error}>{errorMessage}</p>}
-      <Button type={"submit"} name={buttonLabel} color={"primary"}
+      <Button type={"submit"}
+              name={buttonLabel} 
+              color={"primary"} 
+              loading={loading}
+              disabled={disabled}
+              buttonId={buttonId}
       />
     </form>
   )

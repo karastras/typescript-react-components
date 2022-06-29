@@ -1,7 +1,21 @@
 .container {
-    @apply fixed z-bcdscan inset-bcdscan bg-color-bcdscan-bg bg-opacity-bcdscan flex flex-col justify-center gap-bcdscan
+    @apply h-bcdscan-container fixed z-bcdscan-container inset-bcdscan bg-color-bcdscan-container-bg bg-opacity-bcdscan flex flex-col justify-center gap-bcdscan
+}
+
+.content{
+    @apply relative border-bcdscan-cam mx-bcdscan-content-mx bg-color-bcdscan-content-bg border-color-bcdscan-cam-brd rounded-bcdscan-cam
+}
+
+ .cam{
+    @apply relative z-bcdscan-cam
+ }
+
+.loadingIcon {
+    @apply absolute z-bcdscan-icon top-bcdscan-icon-t left-bcdscan-icon-l text-bcdscan-icon text-color-bcdscan-icon-txt animate-bcdscan-logo
 }
 
 .cancelButton {
-    @apply w-bcdscan self-center
+    @apply w-bcdscan-cancel-btn self-center
 }
+
+// .loadingIcon > svg { width: 4rem; height: 4rem; }

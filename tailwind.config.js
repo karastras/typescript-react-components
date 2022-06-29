@@ -7,6 +7,10 @@ module.exports = {
             animation: { /* syntaxe => 'animate-btn' */
                 /* component button */
                 'btn-logo': 'spin ease-in-out 1.2s infinite',
+                /* component barecode-scanner */
+                'bcdscan-logo': 'spin ease-in-out 1.2s infinite',
+                /* component loading (associé à keyframe -> turn ) */
+                'loading-logo': '2.5s linear infinite turn'
             },
             borderRadius: { /* syntaxe => 'rounded-btn' */
                 //---------------------------------------------//
@@ -38,6 +42,10 @@ module.exports = {
                 'RBC-cardetails': '.75rem',
                 /* component table/table-simple */
                 'tab-table': '0.375rem',
+                /* component barecode-scanner */
+                'bcdscan-cam': '.375rem',
+                /* component loading */
+                'loading-logo': '50%',
             },
             borderWidth: { /* syntaxe => 'border-btn' */
                 DEFAULT: '2px',
@@ -75,6 +83,8 @@ module.exports = {
                 'tab-th-first-brd': '0px',
                 'tab-tr-first-brd': '0px',
                 'tab-td-first-brd': '0px',
+                /* component barecode-scanner */
+                'bcdscan-cam': '4px',
             },
             boxShadow: { /* syntaxe => 'shadow-btn' */
                 /* component button */
@@ -106,8 +116,6 @@ module.exports = {
                 'color-btn-txt': '#FFFFFF'/* white */,
                 'color-btn-logo': '#E8E9EB'/* light-gray */,
                 'color-btn-brd': '#FFFFFF'/* white */,
-                /* component barecode-scanner */
-                'color-bcdscan-bg': '#444051'/* dark-gray */,
                 /* component button-back */
                 'color-btnback-bg': '#28509e'/* blue */,
                 'color-btnback-txt': '#FFFFFF'/* white */,
@@ -197,6 +205,11 @@ module.exports = {
                 'color-tab-td-last-bg': '#FFFFFF'/* white */,
                 'color-tab-icon-del-txt': '#dc2626'/* red */,
                 'color-tab-icon-del-bg': '#FFFFFF'/* white */,
+                /* component barecode-scanner */
+                'color-bcdscan-container-bg': '#444051'/* dark-gray */,
+                'color-bcdscan-cam-brd': '#FFFFFF'/* white */,
+                'color-bcdscan-icon-txt': '#E8E9EB'/* light-gray */,
+                'color-bcdscan-content-bg': '#444051'/* dark-gray */,
             },
             fontFamily: { /* syntaxe => 'font-btn' */
                 'sans': ['Unbuntu', 'sans-serif']
@@ -258,6 +271,8 @@ module.exports = {
                 'tab-th-txt': ['.875rem', 0.8],
                 'tab-td-txt': ['.875rem', 0.8],
                 'tab-icon-txt': '1.5rem',
+                /* component barecode-scanner */
+                "bcdscan-icon": '2rem'
             },
             fontWeight: { /* syntaxe => "font-btn" */
                 //---------------------------------------------//
@@ -296,6 +311,8 @@ module.exports = {
                 'tab-td': 500,
             },
             gap: { /* syntaxe => 'gap-btn' */
+                /* component basic/button */
+                'btn-mix': '.5rem',
                 /* component input-text */
                 'inptxt-container': '.25rem',
                 /* component card-location */
@@ -322,17 +339,28 @@ module.exports = {
                 'RBC-cardetails': '.75rem',
                 'RBC-container': '.5rem',
                 /* component barecode-scanner */
-                'bcdscan': '2rem',
+                'bcdscan': '.5rem',
             },
             height: { /* syntaxe => 'h-btn' */
                 /* component checkbox */
                 'chbox': '1.25rem',
+                /* component basic/button */
+                'btn-icon': '2.5rem',
+                /* component barecode-scanner */
+                'bcdscan-container': '100vh'
             },
             inset: { /* syntaxe => 'inset-btn' */
                 /* component modal */
-                'modal-backdrop': 10,
+                'modal-backdrop': 0,
                 /* component barecode-scanner */
                 'bcdscan': 0,
+            },
+            keyframes: {
+                /* component loading */
+                turn: {
+                  'from': { transform: 'rotateY(0deg)' },
+                  'to': { transform: 'rotateY(360deg)' },
+                }
             },
             margin: { /* syntaxe => 'm-btn' */
                 'x-small': '0.5rem',
@@ -349,6 +377,8 @@ module.exports = {
                 'formprodqua-unit-ml': '1rem',
                 /* component modal */
                 'modal-container-mx': 'auto',
+                /* component barecode-scanner */
+                'bcdscan-content-mx': '0rem',
             },
             maxHeight: { /* syntaxe => 'max-h-btn' */
                 /* component modal */
@@ -366,6 +396,8 @@ module.exports = {
                 'modal-backdrop-bg': '0.6',
                 /* component barecode-scanner */
                 'bcdscan': '0.8',
+                /* component loading */
+                'loading-logo': '0.6',
             },
             padding: { /* syntaxe => 'p-btn' */
                 'x-small': '0.5rem',
@@ -375,6 +407,7 @@ module.exports = {
                 /* component basic/button */
                 'btn-py': '1rem',
                 'btn-px': '1rem',
+                'btn-icon-py': '.5rem',
                 /* component button-back */
                 'btnback-pr': '1rem',
                 /* component input-text (si changement, changer le spacing aussi) */
@@ -441,6 +474,12 @@ module.exports = {
                 'cardprodlist-delete-list-r': '.25rem',
                 /* component modal */
                 'modal-container-t': '10rem',
+                /* component barecode-scanner */
+                'bcdscan-icon-t': 'calc(50% - 2rem)',
+                'bcdscan-icon-l': 'calc(50% - 2rem)',
+                /* component loading */
+                'loading-b': '.25rem',
+                'loading-r': '.25rem'
             },
             transformOrigin: {
                 "0": "0%",
@@ -458,10 +497,12 @@ module.exports = {
                 /* component form-product-and-quantity */
                 'formprodqua-unit': '6rem',
                 /* component barecode-scanner */
-                'bcdscan': '50%',
+                'bcdscan-cancel-btn': '50%',
                 /* component table/table-simple */
                 'tab-container': '100%',
                 'tab-input': '100%',
+                /* component loading */
+                'loading-logo': '4rem',
             },
             zIndex: { /* syntaxe => 'z-btn' */
                 "-1": "-1",
@@ -473,7 +514,11 @@ module.exports = {
                 /* component modal */
                 'modal-backdrop': 50,
                 /* component barecode-scanner */
-                'bcdscan': 50,
+                'bcdscan-container': 40,
+                'bcdscan-cam': 50,
+                'bcdscan-icon': 40,
+                /* component loading */
+                'loading': 50
             },
         },
     },

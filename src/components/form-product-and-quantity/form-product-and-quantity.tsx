@@ -1,5 +1,5 @@
 import React, { FocusEventHandler, useEffect } from 'react'
-import { Button } from "../button/button";
+import { Button } from "../button/button"
 import { InputText } from '../inputText/input-text'
 import { Controller, FieldErrors, SubmitHandler } from 'react-hook-form'
 import styles from './form-product-and-quantity.module.scss'
@@ -80,6 +80,18 @@ export type FormProductAndQuantityProps = {
  * affiche le bouton du scan sur l'input
  */
 scanButton?: boolean
+/**
+   * afficher un spinner sur le bouton
+   */
+ loading?: boolean
+ /**
+  * Défini si le bouton est actif
+  */
+ disabled?: boolean
+ /**
+   * id du bouton
+   */
+  buttonId?: string
 }
 
 /**
@@ -104,6 +116,9 @@ scanButton?: boolean
   * @param rulesMessage02 message d'une regles du useForm (validate: valeur > 0)
   * @param onScan action du scan
   * @param scanButton affiche le bouton du scan sur l'input
+  * @param disabled Défini si le bouton est actif
+  * @param loading afficher un spinner sur le bouton
+  * @param buttonId id du bouton
   */
 export function FormProductAndQuantity({
   readOnly,
@@ -123,7 +138,10 @@ export function FormProductAndQuantity({
   rulesMessage01,
   rulesMessage02,
   onScan,
-  scanButton
+  scanButton,
+  disabled,
+  loading,
+  buttonId
 }: FormProductAndQuantityProps) {
 
   /**
@@ -179,7 +197,13 @@ export function FormProductAndQuantity({
           />
           <p className={styles.unit}>{unit}</p>
         </div>
-        <Button type="submit" name={buttonValidLabel} color="primary" />
+        <Button type="submit" 
+              name={buttonValidLabel} 
+              color="primary" 
+              disabled={disabled}
+              loading={loading}
+              buttonId={buttonId}
+              />
       </div>
     </form >
   )

@@ -177,13 +177,16 @@ async function defaultClick () {
       {pingFail && <div className={styles.error}>L'appel au serveur a échoué</div>}
       {pingSuccess && <div className={styles.success}>L'appel au serveur a réussi</div>}
       <div className={styles.buttons}>
-      <Button type={"button"}
-              name={buttonTestLabel}
-              color={"secondary"}
-              disabled={isTesting}
-              loading={isTesting}
-              onClick={handlerPingClick}/>
-        <div className={styles.defautButton}>
+        <div>  
+          <Button type={"button"}
+                name={buttonTestLabel}
+                color={"secondary"}
+                disabled={isTesting}
+                loading={isTesting}
+                onClick={handlerPingClick}
+            />
+        </div>
+        <div className={styles.default}>
           <Button type={"button"}
                   name={buttonDefaultLabel}
                   color={"secondary"}

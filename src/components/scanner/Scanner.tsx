@@ -1,7 +1,8 @@
-import React, { FC, MouseEventHandler } from 'react';
-import { Button } from '../button/button';
+import React, { MouseEventHandler } from 'react';
 import BarcodeScannerComponent from "react-qr-barcode-scanner"
+import { Button } from '../button/button';
 import styles from './scanner.module.scss'
+import { BiLoader } from 'react-icons/bi';
 
 export type BarcodeScannerProps = {
   /**
@@ -34,20 +35,27 @@ export type BarcodeScannerProps = {
 export function BarcodeScanner( {setData, onClickButton, buttonLabel, buttonColor}: BarcodeScannerProps) {
   return (
     <div className={styles.container}>
-        <BarcodeScannerComponent
-            onUpdate={( err, result ) => {
+      <div className={styles.content}>
+        <div className={styles.cam}>
+          <BarcodeScannerComponent height="30%"
+              onUpdate={( err, result ) => {
                 if (result) {
-                    setData(result.getText());
+                  setData(result.getText());
                 }
-            }}
-        />
-        <div className={styles.cancelButton}>
-            <Button color={buttonColor}
-                    name={buttonLabel}
-                    type='button'
-                    onClick={onClickButton}
-            />
+              }}
+              />
         </div>
+        <div className={styles.loadingIcon}>
+            <BiLoader size="4rem" />
+        </div>
+      </div>
+      <div className={styles.cancelButton}>
+          <Button color={buttonColor}
+                  name={buttonLabel}
+                  type='button'
+                  onClick={onClickButton}
+          />
+      </div>
     </div>
   )
 }

@@ -1,5 +1,5 @@
 import React, { MouseEventHandler } from 'react'
-import {BiLoader} from "react-icons/bi";
+import {BiLoader} from "react-icons/bi"
 import styles from "./button.module.scss"
 
 export type ButtonProps = {
@@ -10,7 +10,7 @@ export type ButtonProps = {
   /**
    * le nom du bouton qui sera afficher
    */
-  name: string | number
+  name?: string | number
   /**
    * la couleur de fond du bouton "primary ou secondary"
    */
@@ -27,6 +27,14 @@ export type ButtonProps = {
    * function qui sera appelée lors du click si type button
    */
   onClick?: MouseEventHandler
+  /**
+   * l'icone qui sera affiché
+   */
+  icon?: any
+  /**
+   * id du bouton
+   */
+  buttonId?: string
 }
 
 /**
@@ -38,6 +46,8 @@ export type ButtonProps = {
  * @param disabled Défini si le composant est actif
  * @param loading afficher un spinner sur le bouton
  * @param onClick function qui sera appelée lors du click si type button
+ * @param icon l'icone qui sera affiché
+ * @param buttonId id du bouton
  */
 export function Button ({
                                   type,
@@ -45,7 +55,9 @@ export function Button ({
                                   color,
                                   disabled = false,
                                   loading = false,
-                                  onClick
+                                  onClick,
+                                  icon,
+                                  buttonId
                                 }: ButtonProps ) {
 
   /**
@@ -53,15 +65,24 @@ export function Button ({
    */                                
   return (
     <div className={styles.container}>
-      <input className={`${styles.button} ${styles[color]}`}
+      <button className={`${styles.button} ${styles[color]} ${icon && styles.buttonIcon}`}
              type={type}
-             value={name}
              onClick={onClick}
              disabled={disabled}
-      />
-      {loading && 
-        <BiLoader className={styles.loadingLogo}/>
-      }
+             id={buttonId}
+      >
+        {name && !icon && name} {icon && !name && <span className={styles.icon}>{icon}</span>}
+        {name && icon && 
+          <div className={styles.mix}>
+            <span className={styles.name}>{name}</span> 
+            <span className={styles.icon}>{icon}</span> 
+             
+          </div> 
+        }
+        {loading && 
+          <BiLoader className={styles.loadingLogo}/>
+        }
+      </button>
     </div>
   )
 }

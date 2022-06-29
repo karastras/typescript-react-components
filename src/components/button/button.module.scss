@@ -3,7 +3,11 @@
 }
 
 .button {
-  @apply text-color-btn-txt h-full w-full font-btn-txt py-btn-py px-btn-px shadow-btn rounded-btn border-btn border-color-btn-brd
+  @apply text-color-btn-txt h-full w-full font-btn-txt py-btn-py px-btn-px shadow-btn rounded-btn border-btn border-color-btn-brd flex justify-center cursor-none
+}
+
+.buttonIcon{
+  @apply py-btn-icon-py
 }
 
 .primary {
@@ -16,4 +20,16 @@
 
 .loadingLogo {
   @apply absolute top-btn-load-t left-btn-load-l text-btn-load text-color-btn-logo animate-btn-logo
+}
+
+.mix{
+  @apply flex justify-center gap-btn-mix 
+}
+
+.name{
+  @apply self-center
+}
+
+.icon{
+  @apply h-btn-icon
 }

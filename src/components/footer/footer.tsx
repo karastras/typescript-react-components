@@ -21,8 +21,7 @@ export type FooterProps = {
  * @param settings Optionnel -> affiche un bouton qui renvoie vers '/settings'
  */
  
-export const Footer = ({appName, settings}: FooterProps) => {
-
+export function Footer ({appName, settings}: FooterProps) {
     /**
    * Render
    */

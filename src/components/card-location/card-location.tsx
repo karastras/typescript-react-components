@@ -67,8 +67,8 @@ export function CardLocation({
         <div className={styles.card}>
             <ul className={styles.list}>
                 <li >{warehouseLabel}: <span className={styles.element}>{warehouse}</span></li>
-                <li >{locationLabel}: <span className={styles.element}>{area}</span> </li>
-                <li >{areaLabel}: <span className={styles.element}>{position}</span></li>
+                <li >{areaLabel}: <span className={styles.element}>{area}</span> </li>
+                <li >{locationLabel}: <span className={styles.element}>{position}</span></li>
             </ul>
             <div className={styles.editButton}>
                 <Button type="button" name={buttonLabel} color="secondary" onClick={onClick()} />
