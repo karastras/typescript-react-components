@@ -2,6 +2,7 @@ import React, { useEffect, useState} from "react";
 import Downshift from "downshift";
 import {IoIosArrowDropdown} from "react-icons/io";
 import styles from "./input-combo.module.scss"
+import { FieldError, FieldErrorsImpl, Merge } from "react-hook-form";
 
 export type InputComboProps = {
   /**
@@ -23,7 +24,7 @@ export type InputComboProps = {
   /**
    *  message qui s'affiche en cas d'erreur
  */
-  errorMessage?: string
+  errorMessage?: string | FieldError | Merge<FieldError, FieldErrorsImpl<any>>
   /**
    *  option qui désactive l'input-combo
  */
@@ -61,7 +62,7 @@ export function InputCombo ({
   useEffect(() => {
     const itemFound = items.find((item) => item?.id === value)
     if (itemFound) {
-      setInputValue({name: itemFound.name, value: itemFound.id})
+      setInputValue({name: itemFound.name, value: itemFound.warehouseCode || itemFound.id})
     }
   }, [value, items])
 
@@ -72,8 +73,8 @@ export function InputCombo ({
    */
   function handleStateChange(changes: any) {
     if (changes.selectedItem) {
-      setInputValue({name: changes.selectedItem.name, value: changes.selectedItem.id})
-     if(onChange) onChange(changes.selectedItem.id)
+      setInputValue({name: changes.selectedItem.name, value: changes.selectedItem.warehouseCode ? changes.selectedItem.warehouseCode : changes.selectedItem.id})
+     if(onChange) onChange(changes.selectedItem.warehouseCode ? changes.selectedItem.warehouseCode : changes.selectedItem.id)
     }
   }
 
@@ -97,7 +98,7 @@ export function InputCombo ({
         <div className={styles.comboContainer}>
           <label className={styles.comboLabel} {...getLabelProps()}>{label}</label>
           <div  {...getRootProps(undefined, {suppressRefError: true})}>
-            <input type={"text"} className={styles.comboInput} {...getInputProps({disabled})} />
+            <input type={"text"} className={styles.comboInput} {...getInputProps({disabled})}/>
             <button className={isOpen ? styles.comboButtonOpened : styles.comboButtonClosed}
                     type="button"
                     {...getToggleButtonProps({disabled})}

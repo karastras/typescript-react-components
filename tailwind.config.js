@@ -10,7 +10,7 @@ module.exports = {
                 /* component barecode-scanner */
                 'bcdscan-logo': 'spin ease-in-out 1.2s infinite',
                 /* component loading (associé à keyframe -> turn ) */
-                'loading-logo': '2.5s linear infinite turn'
+                'loading-logo': '2.5s linear infinite turn',
             },
             borderRadius: { /* syntaxe => 'rounded-btn' */
                 //---------------------------------------------//
@@ -32,6 +32,7 @@ module.exports = {
                 'cardprodlist': '.25rem',
                 /* component header */
                 'head-icon-pwr': '.5rem',
+                'head-icon-left': '.5rem',
                 /* component footer */
                 'foot-icon-set': '.5rem',
                 /* component modal */
@@ -68,6 +69,7 @@ module.exports = {
                 'cardprodlist': '2px',
                 /* component header */
                 'head-icon-pwr': '2px',
+                'head-icon-left': '2px',
                 /* component footer */
                 'foot-icon-set': '2px',
                 /* component modal */
@@ -95,6 +97,7 @@ module.exports = {
                 'foot-icon-set': '0.1em 0.1em 0.2em rgba(0,0,0,0.3)',
                 /* component header */
                 'head-icon-pwr': '0.1em 0.1em 0.2em rgba(0,0,0,0.3)',
+                'head-icon-left': '0.1em 0.1em 0.2em rgba(0,0,0,0.3)',
                 /* component routing-button-card -RBC- */
                 'RBC-simplebtn': '0.1em 0.1em 0.2em 0.1em rgba(0,0,0,0.3)',
                 'RBC-cardetails': '0.1em 0.1em 0.2em 0.1em rgba(0,0,0,0.3)',
@@ -110,6 +113,11 @@ module.exports = {
                 'color-octonary': '#444051'/* dark-gray */,
                 'color-nonary': '#9ca3af'/* variant-gray */,
                 //---------------------------------------------//
+                /* component barecode-scanner */
+                'color-bcdscan-container-bg': '#444051'/* dark-gray */,
+                'color-bcdscan-cam-brd': '#FFFFFF'/* white */,
+                'color-bcdscan-icon-txt': '#E8E9EB'/* light-gray */,
+                'color-bcdscan-content-bg': '#444051'/* dark-gray */,
                 /* component basic/button */
                 'color-btn-bg-primary': '#7FC31C'/* green */,
                 'color-btn-bg-secondary': '#28509e'/* blue */,
@@ -173,16 +181,19 @@ module.exports = {
                 /* component form-server-config */
                 'color-formservconf-succtxt': '#7FC31C'/* green */,
                 'color-formservconf-errtxt': '#dc2626'/* red */,
-                /* component single-input */
-                'color-singinp-errtxt': '#dc2626'/* red */,
                 /* component header */
                 'color-head-user': '#28509e'/* blue */,
-                'color-head-icon-power-brd': '#FFFFFF'/* white */,
+                'color-head-icon-pwr-brd': '#FFFFFF'/* white */,
+                'color-head-icon-left-brd': '#FFFFFF'/* white */,
                 'color-head-icon-pwr-txt': '#FFFFFF'/* white */,
-                'color-head-icon-pwr-bg': '#28509e'/* blue */,
+                'color-head-icon-left-txt': '#FFFFFF'/* white */,
+                'color-head-icon-pwr-bg': '#dc2626'/* red */,
+                'color-head-icon-left-bg': '#28509e'/* blue */,
                 'color-head-icon-user-txt': '#28509e'/* blue */,
                 'color-head-icon-wifioff-txt': '#dc2626'/* red */,
                 'color-head-icon-wifion-txt': '#7FC31C'/* green */,
+                /* component loading */
+                'color-loading-bg': '#FFFFFF'/* white */,
                 /* component modal */
                 'color-modal-backdrop-bg': '#111827'/* x-dark-gray */,
                 'color-modal-container-bg': '#D1D5DB'/* gray */,
@@ -194,6 +205,8 @@ module.exports = {
                 'color-RBC-simplebtn-bg': '#7FC31C'/* green */,
                 'color-RBC-cardetails-bg': '#F3F3F6'/* dirt-white */,
                 'color-RBC-cardetails-brd': '#F3F3F6'/* dirt-white */,
+                /* component single-input */
+                'color-singinp-errtxt': '#dc2626'/* red */,
                 /* component table/table-simple */
                 'color-tab-thead-bg': '#28509e'/* blue */,
                 'color-tab-th-txt': '#FFFFFF'/* white */,
@@ -205,11 +218,6 @@ module.exports = {
                 'color-tab-td-last-bg': '#FFFFFF'/* white */,
                 'color-tab-icon-del-txt': '#dc2626'/* red */,
                 'color-tab-icon-del-bg': '#FFFFFF'/* white */,
-                /* component barecode-scanner */
-                'color-bcdscan-container-bg': '#444051'/* dark-gray */,
-                'color-bcdscan-cam-brd': '#FFFFFF'/* white */,
-                'color-bcdscan-icon-txt': '#E8E9EB'/* light-gray */,
-                'color-bcdscan-content-bg': '#444051'/* dark-gray */,
             },
             fontFamily: { /* syntaxe => 'font-btn' */
                 'sans': ['Unbuntu', 'sans-serif']
@@ -230,6 +238,7 @@ module.exports = {
                 'inptxt-pwd-scan': '2.25rem',
                 'inptxt-check-scan': '2.25rem',
                 'inptxt-errtxt': '.875rem',
+                'inptxt-unit': '1.2rem',
                 /* component input-combo */
                 'inpcomb-errtxt': '.875rem',
                 /* component button-back */
@@ -246,7 +255,6 @@ module.exports = {
                 /* component form-product-and-quantity */
                 'formprodqua-title': '1.8rem',
                 'formprodqua-errtxt': '.875rem',
-                'formprodqua-unit': '1rem',
                 /* component form-server-config */
                 'formservconf-errtxt': '.875rem',
                 'formservconf-succtxt': '.875rem',
@@ -259,6 +267,7 @@ module.exports = {
                 /* component header */
                 'head-user': '1.4rem',
                 'head-icon-pwr-txt': '2.2rem',
+                'head-icon-left-txt': '2.2rem',
                 'head-icon-user-txt': '2rem',
                 'head-icon-wifioff-txt': '2rem',
                 'head-icon-wifion-txt': '2rem',
@@ -278,6 +287,7 @@ module.exports = {
                 //---------------------------------------------//
                 /* component input-text */
                 'inptxt-errtxt': 700,
+                'inptxt-unit': 700,
                 /* component basic/button */
                 'btn-txt': 600,
                 /* component input-combo */
@@ -299,7 +309,6 @@ module.exports = {
                 /* component form-product-and-quantity */
                 'formprodqua-title': 0,
                 'formprodqua-errtxt': 700,
-                'formprodqua-unit': 700,
                 /* component form-server-config */
                 'formservconf-errtxt': 700,
                 /* component single-input */
@@ -360,21 +369,21 @@ module.exports = {
                 turn: {
                   'from': { transform: 'rotateY(0deg)' },
                   'to': { transform: 'rotateY(360deg)' },
-                }
+                },
             },
             margin: { /* syntaxe => 'm-btn' */
                 'x-small': '0.5rem',
                 'small': '2rem',
                 'medium': '2.5rem',
                 'large': '5rem',
+                /* component input-text */
+                'inptxt-unit-r': '1rem',
                 /* component input-combo */
                 'inpcomb-errtxt-mt': '.25rem',
                 /* component card-location-details */
                 'cardlocdetails-element-ml': '.5rem',
                 /* component card-product-list */
                 'cardprodlist-element-quantity-r': '2rem',
-                /* component form-product-and-quantity */
-                'formprodqua-unit-ml': '1rem',
                 /* component modal */
                 'modal-container-mx': 'auto',
                 /* component barecode-scanner */
@@ -392,8 +401,11 @@ module.exports = {
                 /* component button */
                 'btn-primary': '.40',
                 'btn-secondary': '.40',
+                'btn-active': '.4',
+                /* component button-back */
+                'btnback-active': '.4',
                 /* component modal */
-                'modal-backdrop-bg': '0.6',
+                'modal-backdrop-bg': '0.8',
                 /* component barecode-scanner */
                 'bcdscan': '0.8',
                 /* component loading */
@@ -440,6 +452,7 @@ module.exports = {
                 'foot-icon-set-p': 'none',
                 /* component header */
                 'head-icon-pwr-p': 'none',
+                'head-icon-left-p': 'none',
                 /* component table/table-simple */
                 'tab-th-py': '1rem',
                 'tab-td-py': '.5rem',
@@ -478,8 +491,10 @@ module.exports = {
                 'bcdscan-icon-t': 'calc(50% - 2rem)',
                 'bcdscan-icon-l': 'calc(50% - 2rem)',
                 /* component loading */
+                'loading-t': '',
+                'loading-r': '.25rem',
                 'loading-b': '.25rem',
-                'loading-r': '.25rem'
+                'loading-l': ''
             },
             transformOrigin: {
                 "0": "0%",
@@ -494,8 +509,6 @@ module.exports = {
                 'chbox': '1.25rem',
                 /* component card-location */
                 'cardloc-btn': '50%',
-                /* component form-product-and-quantity */
-                'formprodqua-unit': '6rem',
                 /* component barecode-scanner */
                 'bcdscan-cancel-btn': '50%',
                 /* component table/table-simple */

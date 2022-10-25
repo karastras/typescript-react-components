@@ -18,12 +18,22 @@
     @apply border-tab-th-first-brd
 }
 
-.tr {
+.tr, .animetr, .animetrr {
     @apply bg-color-tab-tr-bg border-t-tab-tr-brd-t border-color-tab-tr-brd
 }
 
 .tr:first-child {
-    @apply border-tab-tr-first-brd
+    @apply border-tab-tr-first-brd;
+}
+
+.animetr:first-child {
+    @apply border-tab-tr-first-brd;
+    animation: pulsetr 1.5s;
+}
+
+.animetrr:first-child {
+    @apply border-tab-tr-first-brd;
+    animation: pulsetrr 1.5s;
 }
 
 .td {
@@ -34,12 +44,9 @@
     @apply border-tab-td-first-brd
 }
 
+
 .td:last-child {
     @apply bg-color-tab-td-last-bg
-}
-
-.tdquantity{
-    @apply bg-color-tab-td-quant-bg
 }
 
 .input {
@@ -49,3 +56,40 @@
 .bix {
     @apply flex justify-center text-tab-icon-txt text-color-tab-icon-del-txt bg-color-tab-icon-del-bg
 }
+
+@keyframes pulsetr {
+    0% {
+        opacity: 1;
+      }
+    25% {
+        opacity: .5;
+      }
+    50% {
+        opacity: 1;
+      }
+    75% {
+        opacity: .5;
+      }
+      100% {
+        opacity: 1;
+      }
+}
+
+@keyframes pulsetrr {
+    0% {
+        opacity: 1;
+      }
+    25% {
+        opacity: .5;
+      }
+    50% {
+        opacity: 1;
+      }
+    75% {
+        opacity: .5;
+      }
+      100% {
+        opacity: 1;
+      } 
+}
+

@@ -65,7 +65,7 @@ export function Button ({
    */                                
   return (
     <div className={styles.container}>
-      <button className={`${styles.button} ${styles[color]} ${icon && styles.buttonIcon}`}
+      <button className={disabled ?  `${styles.buttonDisabled} ${styles[color]} ${icon && styles.buttonIcon}` : `${styles.button} ${styles[color]} ${icon && styles.buttonIcon}`}
              type={type}
              onClick={onClick}
              disabled={disabled}

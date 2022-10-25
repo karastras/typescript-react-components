@@ -46,6 +46,10 @@ export type FormServerConfigProps = {
    * label du bouton de validation du formulaire
    */
   buttonValidLabel: string
+  /**
+   * chemin et nom du fichier de config
+   */
+  configFile: string
 }
 
 interface ServerConfig {
@@ -71,6 +75,7 @@ interface Server {
  * @param buttonTestLabel label du bouton du test de ping
  * @param buttonDefaultLabel label du boutton valeur par défaut
  * @param buttonValidLabel label du bouton de validation du formulaire
+ * @param configFile chemin et nom du fichier de config
  */
 export function FormServerConfig ({
   onSubmit,
@@ -82,7 +87,8 @@ export function FormServerConfig ({
   checkboxLabel,
   buttonTestLabel,
   buttonDefaultLabel,
-  buttonValidLabel
+  buttonValidLabel,
+  configFile
 }: FormServerConfigProps) {
   // Parametre du composant ---------------------------------------------------------------------
   /**
@@ -131,7 +137,7 @@ export function FormServerConfig ({
 
 async function defaultClick () {
     try {
-      const response = await fetch("/server-config.json")
+      const response = await fetch(configFile)
       const serverConfig: ServerConfig = await response.json()
       setValue("serverURL", serverConfig.server.serverURL)
       setValue("port", serverConfig.server.port)

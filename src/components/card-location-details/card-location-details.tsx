@@ -15,7 +15,7 @@ export type CardLocationDetailsProps = {
   */
   location: {
     quantity?: number | string
-    warehouse?: string
+    warehouseCode?: string
     area?: string
     span?: string
     rack?: string
@@ -84,7 +84,7 @@ export function CardLocationDetails ({
         </li> 
         : undefined}
         <li>{warehouseLabel}:
-          <span className={styles.element}>{location?.warehouse || empty} </span>
+          <span className={styles.element}>{location?.warehouseCode || empty} </span>
         </li>
         <li>{areaLabel}:
           <span className={styles.element}>{location?.area || empty} </span>

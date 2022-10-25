@@ -2,16 +2,16 @@
     @apply flex justify-between
 }
 
-.left {
-    @apply flex
+.right {
+    @apply flex gap-1 items-center
 }
 
 .username{
-    @apply self-center text-head-user text-color-head-user font-head-user
+    @apply text-head-user text-color-head-user font-head-user
 }
 
-.biUser{
-    @apply text-color-head-icon-user-txt text-head-icon-user-txt
+.leftIcon{
+    @apply  bg-color-head-icon-left-bg shadow-head-icon-left rounded-head-icon-left text-color-head-icon-left-txt border-head-icon-left border-color-head-icon-left-brd text-head-icon-left-txt p-head-icon-left-p
 }
 
 .wifiOff{
@@ -23,5 +23,5 @@
 }
 
 .bipower{
-    @apply bg-color-head-icon-pwr-bg shadow-head-icon-pwr rounded-head-icon-pwr text-color-head-icon-pwr-txt border-head-icon-pwr border-color-head-icon-power-brd text-head-icon-pwr-txt p-head-icon-pwr-p
+    @apply bg-color-head-icon-pwr-bg shadow-head-icon-pwr rounded-head-icon-pwr text-color-head-icon-pwr-txt border-head-icon-pwr border-color-head-icon-pwr-brd text-head-icon-pwr-txt p-head-icon-pwr-p
 }

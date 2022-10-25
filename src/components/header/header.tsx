@@ -1,6 +1,6 @@
 import React, { MouseEventHandler, useEffect, useState } from 'react'
 import styles from './header.module.scss'
-import { BiUser, BiWifi, BiWifiOff, BiPowerOff} from "react-icons/bi"
+import { BiUser, BiWifi, BiWifiOff, BiPowerOff, BiHomeSmile} from "react-icons/bi"
 
 const getOnLineStatus = () =>
   typeof navigator !== 'undefined'
@@ -16,16 +16,33 @@ export type HeaderProps = {
     * Fonction après le click sur le bouton de déconnexion
     */
     handleDisconnectButton: MouseEventHandler<SVGElement>
+    /**
+    * Si à true affiche un icone utilisateur
+    */
+    userIcon?: boolean
+    /**
+    * Si à true affiche un icone home->Accueil
+    */
+    homeIcon?: boolean
+    /**
+    * Action sur le clique de l'icone Home
+    */
+    onHome?: MouseEventHandler<SVGElement>
 }
 
 /**
  * Composant affichant le nom de l'utilsiateur, l'état de connexion au réseau et le bouton de déconnexion
  * @param userName Nom du user à afficher
  * @param handleDisconnectButton Fonction après le click sur le bouton de déconnexion
+ * @param userIcon Si à true affiche un icone utilisateur
+ * @param homeIcon Si à true affiche un icone home->Accueil
  */
 export function Header ({
   userName,
   handleDisconnectButton,
+  userIcon,
+  homeIcon,
+  onHome
 }: HeaderProps) {
 
   // Parametre du composant ---------------------------------------------------------------------
@@ -68,17 +85,18 @@ export function Header ({
    */
   return (
     <div className={styles.container}>
-        <div className={styles.left}>
-          <BiUser className={styles.biUser}/>
-          <p className={styles.username}>{userName}</p>
+        {userIcon && <BiUser className={styles.leftIcon}/>}
+        {homeIcon && <BiHomeSmile className={styles.leftIcon} onClick={onHome}/>}
+        <p className={styles.username}>{userName}</p>
+        <div className={styles.right}>
           {
             status ?
-              <BiWifi className={styles.wifiOn}/> 
-              :
-              <BiWifiOff className={styles.wifiOff}/>
+            <BiWifi className={styles.wifiOn}/> 
+            :
+            <BiWifiOff className={styles.wifiOff}/>
           }
+          <BiPowerOff className={styles.bipower} onClick={handleDisconnectButton}/>
         </div>
-        <BiPowerOff className={styles.bipower} onClick={handleDisconnectButton}/>
     </div>
   )
 }

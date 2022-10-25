@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import {Controller, SubmitHandler, useForm} from 'react-hook-form'
+import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { BarcodeScanner } from '../scanner/Scanner';
-import {Button} from "../button/button";
+import { Button } from "../button/button";
 import { InputCombo } from '../input-combo/input-combo';
-import {InputText} from '../inputText/input-text'
+import { InputText } from '../inputText/input-text'
 import styles from "./form-location.module.scss"
 
 export type FormLocationProps = {
@@ -15,9 +15,9 @@ export type FormLocationProps = {
  * les données injectées dans la liste déroulante
  */
   optionList: {
-    CodeDepot?: string
-    Libelle?: string
-    UUIDPK?: string
+    warehouseCode?: string
+    name?: string
+    id?: string
   }[]
   /**
  * le nom du boutton (utilisé pour afficher sa fonction)
@@ -39,58 +39,62 @@ export type FormLocationProps = {
  * injection de données si édition
  */
   edit?: {
-    warehouse?: string
+    warehouseCode?: string
     area?: string
-    palletPosition?: string
+    palletLocation?: string
   }
-   /**
- * Label de l'input-combo
- */
+  /**
+* Label de l'input-combo
+*/
   warehouseLabel: string
-   /**
- * Label de l'input-text 01
- */
+  /**
+* Label de l'input-text 01
+*/
   areaLabel: string
-   /**
- * Label de l'input-text 02
- */
+  /**
+* Label de l'input-text 02
+*/
   locationLabel: string
   /**
  * Affiche un message d'erreur via useForm
  */
- rulesError01: string
-/**
- * affiche le bouton de scan sur l'input Area
- */
- isScanArea?: boolean
-/**
- * affiche le bouton de scan sur l'input PalletPosition
- */
- isScanPalletPosition?: boolean
- /**
- * label du bouton de scan
- */
- scanButtonLabel?: string
- /**
- * couleur du bouton de scan
- */
- scanButtonColor?: 'primary' | 'secondary'
+  rulesError01: string
+  /**
+   * affiche le bouton de scan sur l'input Area
+   */
+  isScanArea?: boolean
+  /**
+   * affiche le bouton de scan sur l'input PalletPosition
+   */
+  isScanPalletPosition?: boolean
+  /**
+  * label du bouton de scan
+  */
+  scanButtonLabel?: string
+  /**
+  * couleur du bouton de scan
+  */
+  scanButtonColor?: 'primary' | 'secondary'
   /**
    * Défini si le bouton est actif
    */
- disabled?: boolean
+  disabled?: boolean
   /**
    * afficher un spinner sur le bouton
    */
- loading?: boolean
- /**
-   * id du bouton
-   */
+  loading?: boolean
+  /**
+    * id du bouton
+    */
   buttonId?: string
   /**
    * id du formulaire
    */
   formId?: string
+  /**
+   * option pour fixer le scroll du fond d'écran quand le scan est actif
+   */
+  scrollFixed?: boolean
 }
 
 /**
@@ -115,35 +119,39 @@ export type FormLocationProps = {
  * @param loading afficher un spinner sur le bouton
  * @param buttonId id du bouton
  * @param formId id du formulaire
+ * @param scrollFixed option pour fixer le scroll du fond d'écran quand le scan est actif
  */
-export function FormLocation ({
-                                   onSubmit,
-                                   optionList,
-                                   buttonName,
-                                   buttonColor,
-                                   buttonType,
-                                   locationError,
-                                   edit,
-                                   warehouseLabel,
-                                   rulesError01,
-                                   areaLabel,
-                                   locationLabel,
-                                   isScanArea,
-                                   isScanPalletPosition,
-                                   scanButtonLabel,
-                                   scanButtonColor,
-                                   disabled,
-                                   loading,
-                                   buttonId,
-                                   formId
-                                 }: FormLocationProps) {
+export function FormLocation({
+  onSubmit,
+  optionList,
+  buttonName,
+  buttonColor,
+  buttonType,
+  locationError,
+  edit,
+  warehouseLabel,
+  rulesError01,
+  areaLabel,
+  locationLabel,
+  isScanArea,
+  isScanPalletPosition,
+  scanButtonLabel,
+  scanButtonColor,
+  disabled,
+  loading,
+  buttonId,
+  formId,
+  scrollFixed
+}: FormLocationProps) {
 
-  // Paramètre du composant ---------------------------------------------------------------------
   /**
    * Hook formulaire
    */
-  const {handleSubmit, control, formState: {errors}, setValue} = useForm()
+  const { handleSubmit, control, formState: { errors }, setValue } = useForm()
 
+  /**
+   * Hook d'état local
+   */
   const [isActivedScanner, setIsActivedScanner] = useState<boolean>(false)
   const [scannedData, setScannedData] = useState<string>()
   const [inputName, setInputName] = useState<string>()
@@ -152,92 +160,84 @@ export function FormLocation ({
    * Hook pour injecter des valeurs dans les inputs après l'action "EditForm"
    */
   useEffect(() => {
-    setValue("warehouse", edit?.warehouse)
+    setValue("warehouseCode", edit?.warehouseCode)
     setValue("area", edit?.area)
-    setValue("palletPosition", edit?.palletPosition)
+    setValue("palletLocation", edit?.palletLocation)
   }, [edit])
 
-  
-  function handleScan (id: string) {
-    setIsActivedScanner(!isActivedScanner)
-    setInputName(id)
-  }
-  
-  function onCancelScan () {
-    setIsActivedScanner(false)
-  }
-
-  useEffect(()=> {
+  useEffect(() => {
     if (inputName) {
       setValue(inputName, scannedData)
       setIsActivedScanner(false)
     }
-  },[scannedData])
+  }, [scannedData])
 
+  function toggleScanner(id: string | null = null) {
+    setIsActivedScanner(!isActivedScanner)
+    if (id) { setInputName(id) }
+  }
 
-  /**
-   * Render
-   */
   return (
     <form onSubmit={handleSubmit(onSubmit)} id={formId} className={styles.form}>
       {isActivedScanner && scanButtonLabel && scanButtonColor &&
-        < BarcodeScanner  buttonLabel={scanButtonLabel}
-                          buttonColor={scanButtonColor}
-                          setData={setScannedData}
-                          onClickButton={onCancelScan}
+        < BarcodeScanner buttonLabel={scanButtonLabel}
+          buttonColor={scanButtonColor}
+          setData={setScannedData}
+          onClickButton={() => toggleScanner()}
+          scrollFixed={scrollFixed}
         />
       }
       <Controller
-        render={({field: {ref, ...rest}}) => (
+        render={({ field: { ref, ...rest } }) => (
           <InputCombo {...rest}
-                      label={warehouseLabel}
-                      items={optionList}
-                      errorMessage={errors.warehouse?.message}
+            label={warehouseLabel}
+            items={optionList}
+            errorMessage={errors.warehouseCode?.message}
           />)}
         control={control}
-        name="warehouse"
+        name="warehouseCode"
         defaultValue={""}
-        rules={{required: rulesError01}}
+        rules={{ required: rulesError01 }}
       />
 
       <Controller
-        render={({field: {ref, ...rest}}) => (
+        render={({ field: { ref, ...rest } }) => (
           <InputText  {...rest}
-                      type="text"
-                      label={areaLabel}
-                      errorMessage={errors.area?.message}
-                      onScan={()=>handleScan("area")}
-                      scanButton={isScanArea}
+            type="text"
+            label={areaLabel}
+            errorMessage={errors.area?.message}
+            onScan={() => toggleScanner("area")}
+            scanButton={isScanArea}
           />)}
         control={control}
         name="area"
         defaultValue={""}
-        rules={{required: rulesError01}}
+        rules={{ required: rulesError01 }}
       />
 
       <Controller
-          render={({field: {ref, ...rest}}) => (
-            <InputText  {...rest}
-                        type="text"
-                        label={locationLabel}
-                        errorMessage={errors.palletPosition?.message}
-                        onScan={()=>handleScan("palletPosition")}
-                        scanButton={isScanPalletPosition}
+        render={({ field: { ref, ...rest } }) => (
+          <InputText  {...rest}
+            type="text"
+            label={locationLabel}
+            errorMessage={errors.palletPosition?.message}
+            onScan={() => toggleScanner("palletLocation")}
+            scanButton={isScanPalletPosition}
 
-            />)}
+          />)}
         control={control}
         defaultValue={""}
-        name="palletPosition"
-        rules={{required: rulesError01}}
+        name="palletLocation"
+        rules={{ required: rulesError01 }}
       />
 
       {locationError && <p className={styles.error}>{locationError}</p>}
-      <Button type={buttonType} 
-              color={buttonColor} 
-              name={buttonName}
-              disabled={disabled}
-              loading={loading}
-              buttonId={buttonId}
+      <Button type={buttonType}
+        color={buttonColor}
+        name={buttonName}
+        disabled={disabled}
+        loading={loading}
+        buttonId={buttonId}
       />
     </form>
   )

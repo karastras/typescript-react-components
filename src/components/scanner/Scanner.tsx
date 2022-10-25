@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from 'react';
+import React, { MouseEventHandler, useEffect } from 'react';
 import BarcodeScannerComponent from "react-qr-barcode-scanner"
 import { Button } from '../button/button';
 import styles from './scanner.module.scss'
@@ -21,6 +21,10 @@ export type BarcodeScannerProps = {
  * couleur du bouton
  */
   buttonColor: 'primary' | 'secondary'
+   /**
+   * option pour fixer le scroll du fond d'écran quand le scan est actif
+   */
+  scrollFixed?: boolean
 }
 
 /**
@@ -31,8 +35,24 @@ export type BarcodeScannerProps = {
  * @param onClickButton action après le click sur le bouton
  * @param buttonLabel label du bouton
  * @param buttonColor couleur du bouton
+ * @param scrollFixed option pour fixer le scroll du fond d'écran quand le scan est actif
  */
-export function BarcodeScanner( {setData, onClickButton, buttonLabel, buttonColor}: BarcodeScannerProps) {
+export function BarcodeScanner( {setData, onClickButton, buttonLabel, buttonColor, scrollFixed}: BarcodeScannerProps) {
+
+  // Hook pour exécuter une action lors du montage du composant en fonction du props plop
+  useEffect(()=>{
+    if (scrollFixed) {
+      document.body.style.overflow = 'hidden'
+    }
+  },[])
+
+  // Hook pour exécuter une action lors du démontage du composant
+  useEffect(() => {
+      return () => { 
+        document.body.style.overflow = 'unset'
+    }
+  }, [])
+
   return (
     <div className={styles.container}>
       <div className={styles.content}>
@@ -40,7 +60,8 @@ export function BarcodeScanner( {setData, onClickButton, buttonLabel, buttonColo
           <BarcodeScannerComponent height="30%"
               onUpdate={( err, result ) => {
                 if (result) {
-                  setData(result.getText());
+                  // @ts-ignore
+                  setData(result.text);
                 }
               }}
               />
@@ -59,5 +80,3 @@ export function BarcodeScanner( {setData, onClickButton, buttonLabel, buttonColo
     </div>
   )
 }
-
-

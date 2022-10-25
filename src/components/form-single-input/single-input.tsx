@@ -1,5 +1,5 @@
 import React from 'react'
-import { Control, Controller, FieldErrors, SubmitHandler } from 'react-hook-form'
+import { Controller, FieldErrors, SubmitHandler } from 'react-hook-form'
 import {Button} from "../button/button";
 import {InputText} from '../inputText/input-text'
 import styles from './single-input.module.scss'
@@ -26,37 +26,37 @@ export type SingleInputProps = {
  */
   inputName: string
   /**
- * les différentes règles applicable du useForm ex: {required: "Le champs est obligatoire"}
- */
+   * les différentes règles applicable du useForm ex: {required: "Le champs est obligatoire"}
+   */
   rules?: Object
   /**
   * provient du useForm()
   */
-   control: Control
-/**
+  control: any
+  /**
   * provient du useForm()
   */
-   errors: FieldErrors
-/**
+  errors: FieldErrors
+  /**
    * action du scan
    */
- onScan?: Function
- /**
- * affiche le bouton du scan sur l'input
- */
-scanButton?: boolean
-/**
+  onScan?: Function
+  /**
+   * affiche le bouton du scan sur l'input
+   */
+  scanButton?: boolean
+  /**
    * Défini si le bouton est actif
    */
- disabled?: boolean
+  disabled?: boolean
   /**
    * afficher un spinner sur le bouton
    */
- loading?: boolean
+  loading?: boolean
   /**
    * id du bouton
    */
- buttonId?: string
+  buttonId?: string
 }
 
 /**

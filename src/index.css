@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Chrome disabled blue highlight on link */
+a:active {
+    -webkit-tap-highlight-color: transparent;
+}

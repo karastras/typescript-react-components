@@ -19,15 +19,32 @@ import { FormServerConfig } from '../../components/form-server-config/form-serve
 import { SingleInput } from '../../components/form-single-input/single-input';
 import { Header } from '../../components/header/header';
 import { Modal } from '../../components/modal/modal';
-import { useNavigate } from 'react-router-dom';
 import { BarcodeScanner } from '../../components/scanner/Scanner';
 import { EditableCell, RemoveItemCell, TableSimple } from '../../components/table/TableSimple';
 import { InputTextarea } from '../../components/input-textarea/input-textarea';
+import { BsUpcScan } from "react-icons/bs"
+import {Loading} from '../../components/loading/Loading';
+import { Link, useNavigate } from 'react-router-dom';
+
 
 const ExemplePage = () => {
   
-  const { handleSubmit, formState: { errors }, setValue, control, watch } = useForm()
+const { handleSubmit, formState: { errors }, setValue, control, watch} = useForm()
 
+const ware = watch('warehouse')
+useEffect(()=>{
+ if (ware == ""){
+  setValue("warehouse", "")
+ }
+}, [ware])
+
+function plop () {
+  setValue("warehouse", "")
+}
+
+console.log(ware, 'WATCHWARE')
+
+const navigate = useNavigate()
 
 const productError = "ERROR"
 
@@ -66,6 +83,9 @@ function handleBlur (e: any) {console.log(e.target.value, "TARGET")  }
 
   const [isTesting, setIstesting] = useState<boolean>(false)
   const [isChecked, setIsChecked] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(false)
+
+  const [data, setData] = useState<any>([])
 
   const [count, setCount] = useState<number>(0)
 
@@ -75,8 +95,10 @@ function handleBlur (e: any) {console.log(e.target.value, "TARGET")  }
 
   function onClickTest() {
     setIstesting(true)
+    setLoading(true)
     setTimeout(() => {
       setIstesting(false)
+      setLoading(false)
     }, 3000)
   }
 
@@ -84,14 +106,8 @@ function handleBlur (e: any) {console.log(e.target.value, "TARGET")  }
     setCount(count + 1)
     dispatch(autreAction("look in console"))
   }
-  console.log(count, "ca marche!")
 
-  /////////////////////header/////////////
-/**
-   * Hook React
-   */
- const navigate = useNavigate()
-
+  
  const [modalMessage, setModalMessage] = useState<string>()
  const [modalHeader, setModalHeader] = useState<string>()
  const [confirmLabel, setConfirmLabel] = useState<string>()
@@ -101,27 +117,14 @@ function handleBlur (e: any) {console.log(e.target.value, "TARGET")  }
  const [userName, setuserName] = useState<string>("")
 
 function handleDisconnectButton() {
-  if(localStorage.getItem("sessionID")) {
-    setModalHeader("plop")
-    setModalMessage("je suis message")
-    setModalOnConfirm(() => () => { handleDisconnectConfirmed() })
-    setModalOnCancel(() => () => { setModalMessage(undefined) })
-    setConfirmLabel("Continuer")
-    setCancelLabel("Annuler")
-  } else {
-    navigate('/login')
-  }
+  setModalHeader("plop")
+  setModalMessage("je suis message")
+  setModalOnConfirm(() => () => { setModalMessage(undefined) })
+  setModalOnCancel(() => () => { setModalMessage(undefined) })
+  setConfirmLabel("Continuer")
+  setCancelLabel("Annuler")
 }
 
-  /**
-   *  Handler confirmer la déconnexion
-   */
-   function handleDisconnectConfirmed() {
-    localStorage.removeItem("sessionID")
-    localStorage.removeItem("nomPrenom")
-    setModalMessage(undefined)
-    navigate('/login');
-  }
 
   /**
    * Constante pour stocker le username du local Storage
@@ -142,19 +145,13 @@ function handleDisconnectButton() {
   })
 
   const [isActivedScanner, setIsActivedScanner] = useState<boolean>(false)
-  const [scannedData, setScannedData] = useState<string>();
+  const [scannedData, setScannedData] = useState<string>('');
   const [inputName, setInputName] = useState<string>()
 
-  console.log(inputName, 'INPUT')
 
-
-  function handleScan (id:string) {
+  function toggleScanner(id: string | null = null) {
     setIsActivedScanner(!isActivedScanner)
-    setInputName(id)
-  }
-
-  function onCancelScan () {
-    setIsActivedScanner(false)
+    if (id) { setInputName(id) }
   }
 
   useEffect(()=> {
@@ -186,21 +183,54 @@ function handleDisconnectButton() {
     }
   ], [])
 
-  const data = [{
+const lol = [
+  {  
+    warehouseCode: "1",
+    id: "6FB7D079BC9D954489F5B2F38CA5C622",
+    name: "Dépôt principal"},
+  { id: "6FB7D079BC9D954489F5B25C622",
+    name: "Dépôt secondaire",
+    warehouseCode: "2"}
+]
+
+
+function handleOnChangeQuantity (e:any)  {
+  const value = e.target.value
+  const floatRegExp = new RegExp('^\\d+(?:\.\\d{1,3})?$')
+  if (value === "" || floatRegExp.test(value)) {setValue("quantity", value)}
+}
+
+function updateMyData() {
+  setData([...data, {
     reference: "102",
     description: "plop",
     quantity: 112
-  },
-  {
-    reference: "12545",
-    description: "plop et lol",
-    quantity: 11000
-  },
-]
+  }])
+}
+
+// Autre façon de faire 
+    // const taskIndex = taskList.findIndex(el => el.id === id)
+    //   setTaskList(taskList.map((task, index) => {
+    //     const result: Task = {...task}
+    //     if (index === taskIndex) {
+    //       result.isValidated = !task.isValidated
+    //     }
+    //     return result
+    //   }))
+
+
+    // Essai à retravailler sur l'ajout d'une balise <base href="" /> et d'une config "base": "/exemple" dans le ficher de configuration
+      // if( serverConfig.base ) {
+      //   const ndeBase = document.createElement('base')
+      //   ndeBase.href = serverConfig.base
+      //   document.head.appendChild(ndeBase)
+      // }
   
   return (
     <div className={styles.container}>
+      
       <h1>je suis ExemplePage avec mon State = <span className={styles.bold}>{exemple.test}</span></h1>
+      <div >{ loading && <Loading /> }</div>
       <div className={styles.buttons}>
         <button className={styles.button} onClick={() => { dispatch(uneAction()) }}>Action</button>
         <button className={styles.button} onClick={() => { dispatch(autreAction(" je suis un payload")) }}>Action payload</button>
@@ -211,6 +241,7 @@ function handleDisconnectButton() {
               name='Valider'
               type='button'
               disabled={!isTesting}
+              onClick={()=>{navigate('/exemplePage/next')}}
             />
           </div>
           <div className='w-32'>
@@ -224,7 +255,7 @@ function handleDisconnectButton() {
             <Button color='secondary'
               name='Valider'
               type='submit'
-              onClick={onClick}
+              onClick={handleDisconnectButton}
               disabled={isTesting}
             />
           </div>
@@ -236,7 +267,32 @@ function handleDisconnectButton() {
               onClick={onClickTest}
             />
           </div>
+          <div className='w-24'>
+            <Button color='primary'
+              type='button'
+              onClick={updateMyData}
+              icon={<BsUpcScan size={"2rem"} />}
+            />
+          </div>
+          <div className='w-full'>
+            <Button color='primary'
+            name='Ca va Tourner!'
+              type='button'
+              loading={isTesting}
+              onClick={onClickTest}
+              icon={<BsUpcScan size={"2rem"} />}
+              disabled
+            />
+          </div>
+          <TableSimple columns={columns}
+                data={data}
+                updateMyData={()=>updateMyData()}
+                removeData={()=>{}}
+                reverse
+                animeFirstTr
+          />
         </div>
+          
         <Checkbox label={isChecked? "décochez-moi!!!!" : 'cochez-moi!'}
           name='plop'
           onChange={() => { setIsChecked(!isChecked) }}
@@ -250,7 +306,7 @@ function handleDisconnectButton() {
               type='password'
               scanButton
               checked
-              onScan={()=> handleScan('test')}
+              onScan={()=> toggleScanner('test')}
             />)}
           control={control}
           name='test'
@@ -260,7 +316,8 @@ function handleDisconnectButton() {
         < BarcodeScanner  buttonLabel='Annuler'
                           buttonColor='secondary'
                           setData={setScannedData}
-                          onClickButton={onCancelScan}
+                          onClickButton={()=>toggleScanner()}
+                          scrollFixed           
         />
         }
         <div className={styles.back}>
@@ -268,21 +325,22 @@ function handleDisconnectButton() {
                     label="Retour"
                     />
         </div>
-        {/* <Controller
+        <button onClick={plop}>lol</button>
+
+
+
+        <Controller
                 render={({field: {ref, ...rest}}) => (
                   <InputCombo {...rest}
                               label="Dépot"
-                              items={ [{code: "1", warehouse: "dépot principal", area: "METAL"},
-                              {code: "2", warehouse: "dépot secondaire", area: "METAL"}]
-                                       
-                                    }
+                              items={lol}
                               errorMessage={""}
                   />)}
                 control={control}
                 name="warehouse"
                 defaultValue={"LOL"}
                 rules={{required: "Le champs est obligatoire"}}
-        /> */}
+        />
         <CardLocation area={"Dépôt central"}
                       warehouse={"METAL"}
                       position={"020003"}
@@ -328,7 +386,10 @@ function handleDisconnectButton() {
     />
     <Footer appName='Test APP'
             settings 
+            path='/settings'
+            version='v2.00'
     />
+    
     <FormLocation   onSubmit={()=>{}}
                     buttonColor="primary"
                     buttonName="Rechercher"
@@ -337,13 +398,14 @@ function handleDisconnectButton() {
                     areaLabel='Zone'
                     locationLabel='Emplacement'
                     rulesError01='Le champs est obligatoire'
-                    optionList={[{CodeDepot: "1", Libelle: "Dépôt principal"},
-                                {CodeDepot: "2", Libelle: "Dépôt secondaire"}]}
+                    optionList={lol}
                     locationError={"ERROR"}
                     isScanArea
                     isScanPalletPosition
                     scanButtonColor='secondary'
                     scanButtonLabel='Annuler'
+                    scrollFixed
+
     />
 
 <FormLocation   onSubmit={()=>{}}
@@ -354,14 +416,14 @@ function handleDisconnectButton() {
                 areaLabel='Zone'
                 locationLabel='Emplacement'
                 rulesError01='Le champs est obligatoire'
-                optionList={[{CodeDepot: "1", Libelle: "Dépôt principal"},
-                            {CodeDepot: "2", Libelle: "Dépôt secondaire"}]}
+                optionList={lol}
                 locationError={"ERROR"}
                 isScanArea
                 isScanPalletPosition
                 scanButtonColor='secondary'
                 scanButtonLabel='Annuler'
-    />
+                scrollFixed
+/>
     
 <FormProductAndQuantity title='Article et quantité'
                         onSubmit={onSubmit}
@@ -375,9 +437,11 @@ function handleDisconnectButton() {
                         inputProductLabel='Référence article'
                         inputQuantityLabel='Quantité'
                         rulesMessage01="Le champs est obligatoire"
-                        rulesMessage02='Une valeur numérique doit être saisie, supérieure à 0'
+                        rulesMessage02='Une valeur supérieure à 0 doit être saisie, y compris en cas de décimale'
                         scanButton
-                        onScan={handleScan}                                   
+                        onScan={toggleScanner} 
+                        onChangeQuantity={handleOnChangeQuantity}
+                        stepQuantity="0.001"                                
 />
 
 <FormServerConfig   endPoint=''
@@ -389,6 +453,7 @@ function handleDisconnectButton() {
                     checkboxLabel='Connexion sécurisée'
                     inputAdressLabel='Adresse Serveur'
                     inputPortLabel='Port'
+                    configFile=''
 />
 
 <SingleInput  onSubmit={singleSubmit} 
@@ -399,7 +464,8 @@ function handleDisconnectButton() {
               control={control}
               errors={errors}
               scanButton
-              onScan={handleScan}   
+              onScan={toggleScanner}
+
 />
 <SingleInput  onSubmit={single02Submit} 
               errorMessage='string ou state'
@@ -409,11 +475,13 @@ function handleDisconnectButton() {
               control={control}
               errors={errors}
               scanButton
-              onScan={handleScan}   
+              onScan={toggleScanner}   
 />
 
     <Header handleDisconnectButton={handleDisconnectButton}
             userName={userName}
+            homeIcon
+            onHome={()=>navigate('/')}
     />
     <Modal  onConfirm={modalOnConfirm}
             onCancel={modalOnCancel}
@@ -425,12 +493,7 @@ function handleDisconnectButton() {
             colorCancel='primary'
       />
 
-    <TableSimple columns={columns}
-                data={data}
-                updateMyData={()=>{}}
-                removeData={()=>{}}
-                reverse
-              />
+    
 
     <InputTextarea  label='Description du produit'
                     placeholder='Scanner un produit pour afficher sa description'

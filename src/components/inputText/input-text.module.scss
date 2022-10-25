@@ -43,5 +43,9 @@ input:focus-within ~ label {
 }
 
 .inputError {
-  @apply text-color-inptxt-errtxt font-inptxt-errtxt text-inptxt-errtxt
+  @apply text-color-inptxt-errtxt font-inptxt-errtxt text-inptxt-errtxt w-full
+}
+
+.unit {
+  @apply self-center mr-inptxt-unit-r font-inptxt-unit text-inptxt-unit
 }

@@ -9,6 +9,7 @@ export type TableSimpleProps = {
     updateMyData?: any
     removeData?: any
     reverse?: boolean
+    animeFirstTr?:boolean
 }
 
 /**
@@ -18,8 +19,10 @@ export type TableSimpleProps = {
  * @param data données qui seront affichées dans le tableau
  * @param updateMyData fonction permettant d'éditer les valeur dans les cellules
  * @param removeData fonction permettant de supprimer une ligne
+ * @param animeFirstTr boolean qui active ou non l'animation quand sur la première ligne
  */
 export function TableSimple({
+    animeFirstTr,
     columns,
     data,
     updateMyData,
@@ -44,6 +47,19 @@ export function TableSimple({
     }
     )
 
+    const [count, setCount] = useState<number>(0)
+    const [animTr, setAnimTr] = useState<boolean>(true)
+    
+    // Hook pour checker si une ligne est ajoutée et acitver une animation sur celle-ci
+    useEffect (()=> {
+        if ( rows.length > count ){
+                setAnimTr(!animTr)
+                setCount(rows.length -1)
+        } else {
+            setCount(rows.length -1)
+        }
+    },[rows.length])
+
     return (
         <div className={styles.container}>
             <table className={styles.table} {...getTableProps()}>
@@ -66,7 +82,7 @@ export function TableSimple({
                             prepareRow(row)
                             return (
                                 <tr {...row.getRowProps()} key={index}
-                                    className={styles.tr}
+                                    className={animeFirstTr ? (animTr ? styles.animetr : styles.animetrr) : styles.tr}
                                 >
                                     {row.cells.map(cell => (<td {...cell.getCellProps()}
                                         className={`${styles.td} ${cell.column.id === 'quantity' ? `${styles.tdquantity}` : ""}`}
@@ -82,7 +98,7 @@ export function TableSimple({
                             prepareRow(row)
                             return (
                                 <tr {...row.getRowProps()} key={index}
-                                    className={styles.tr}
+                                    className={animeFirstTr ? (animTr ? styles.animetr : styles.animetrr) : styles.tr}
                                 >
                                     {row.cells.map(cell => (<td {...cell.getCellProps()}
                                         className={`${styles.td} ${cell.column.id === 'quantity' ? `${styles.tdquantity}` : ""}`}

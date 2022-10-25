@@ -1,7 +1,7 @@
-import React, { FocusEventHandler, useEffect } from 'react'
+import React, { ChangeEventHandler, FocusEventHandler, useEffect } from 'react'
 import { Button } from "../button/button"
 import { InputText } from '../inputText/input-text'
-import { Controller, FieldErrors, SubmitHandler } from 'react-hook-form'
+import { Controller, FieldErrors, SubmitHandler, useForm } from 'react-hook-form'
 import styles from './form-product-and-quantity.module.scss'
 
 export type FormProductAndQuantityProps = {
@@ -16,7 +16,7 @@ export type FormProductAndQuantityProps = {
   /**
   * action à définir quand perte du focus de l'input
   */
-  onBlur?: any
+  onBlur?: FocusEventHandler<HTMLInputElement>
   /**
   * définir l'état en lecture seul du composant
   */
@@ -69,18 +69,18 @@ export type FormProductAndQuantityProps = {
    */
   rulesMessage01?: string
   /**
- * message d'une regles du useForm (validate: valeur > 0)
- */
+   * message d'une regles du useForm (validate: valeur > 0)
+   */
   rulesMessage02?: string
-/**
+  /**
    * action du scan
    */
  onScan?: Function
  /**
  * affiche le bouton du scan sur l'input
  */
-scanButton?: boolean
-/**
+  scanButton?: boolean
+  /**
    * afficher un spinner sur le bouton
    */
  loading?: boolean
@@ -92,6 +92,14 @@ scanButton?: boolean
    * id du bouton
    */
   buttonId?: string
+  /**
+   * action au changement d'état de l'input quantité
+   */
+  onChangeQuantity?: ChangeEventHandler<HTMLInputElement>
+  /**
+   * indique l'incrément que la valeur doit suivre
+   */
+  stepQuantity?: string | number
 }
 
 /**
@@ -119,6 +127,9 @@ scanButton?: boolean
   * @param disabled Défini si le bouton est actif
   * @param loading afficher un spinner sur le bouton
   * @param buttonId id du bouton
+  * @param onChangeQuantity action au changement d'état de l'input quantité
+  * @param stepQuantity indique l'incrément que la valeur doit suivre
+  * 
   */
 export function FormProductAndQuantity({
   readOnly,
@@ -141,7 +152,9 @@ export function FormProductAndQuantity({
   scanButton,
   disabled,
   loading,
-  buttonId
+  buttonId,
+  onChangeQuantity,
+  stepQuantity
 }: FormProductAndQuantityProps) {
 
   /**
@@ -159,7 +172,7 @@ export function FormProductAndQuantity({
    * Render
    */
   return (
-    <form className={styles.container} onSubmit={onSubmit}>
+    <form className={styles.container} onSubmit={onSubmit} noValidate>
       {title && <h2 className={styles.title}>{title}</h2>}
       <div className={styles.form}>
         <div className={styles.itemInput}>
@@ -177,26 +190,29 @@ export function FormProductAndQuantity({
               />)}
             control={control}
             name="name"
-            rules={{ required: `${rulesMessage01}` }}
+            rules={{ required: rulesMessage01 }}
             defaultValue=""
           />
           {messageError && <p className={styles.textError}>{messageError}</p>}
         </div>
-        <div className={styles.quantityInput}>
-          <Controller
-            render={({ field: { ref, ...rest } }) => (
-              <InputText  {...rest}
-                type="number"
-                label={inputQuantityLabel}
-                errorMessage={errors?.quantity?.message}
-              />)}
-            control={control}
-            name="quantity"
-            rules={{ validate: (value: number | string) => value > 0 || `${rulesMessage02}` }}
-            defaultValue=""
-          />
-          <p className={styles.unit}>{unit}</p>
-        </div>
+        <Controller
+          render={({ field: { ref, ...rest } }) => (
+            <InputText  {...rest}
+              onChange={onChangeQuantity}
+              type="number"
+              label={inputQuantityLabel}
+              errorMessage={errors?.quantity?.message}
+              step={stepQuantity}
+              unit={unit}
+            />)}
+          control={control}
+          name="quantity"
+          rules={{ 
+            validate: (value: number | string) => value > 0 || rulesMessage02
+          }
+        }
+          defaultValue=""
+        />
         <Button type="submit" 
               name={buttonValidLabel} 
               color="primary" 

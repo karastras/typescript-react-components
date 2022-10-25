@@ -24,9 +24,9 @@ export function BackButton ({onBackButton, label}: BackButtonProps) {
     * Render
     */
   return (
-    <div className={styles.back} onClick={onBackButton}>
+    <button className={styles.back} onClick={onBackButton}>
         <BiChevronLeft className={styles.arrowIcon} />
         <p>{label}</p>
-    </div>
+    </button>
   )
 }

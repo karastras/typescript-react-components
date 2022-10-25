@@ -1,4 +1,5 @@
-import React, { useState, FocusEventHandler, MouseEventHandler } from "react"
+import React, { useState, FocusEventHandler, MouseEventHandler, ChangeEventHandler } from "react"
+import { FieldError, FieldErrorsImpl, Merge } from "react-hook-form"
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 import { BsUpcScan, BsCheckLg } from "react-icons/bs"
 import styles from "./input-text.module.scss"
@@ -23,11 +24,11 @@ export type InputTextProps = {
   /**
    * message d'erreur a afficher
    */
-  errorMessage?: string
+   errorMessage?: string | FieldError | Merge<FieldError, FieldErrorsImpl<any>>
   /**
    * action au changement d'état
    */
-  onChange?: any
+  onChange?: ChangeEventHandler<HTMLInputElement>
   /**
    * le nom utilisé pour l'identifier au sein d'un form useform
    */
@@ -35,7 +36,7 @@ export type InputTextProps = {
   /**
    * action quand le focus est perdu sur l'input
    */
-  onBlur?: any
+  onBlur?: FocusEventHandler<HTMLInputElement>
   /**
    * selectionne toute la value de l'input si clique sur l'input
    */
@@ -56,6 +57,14 @@ export type InputTextProps = {
  * affiche un icone de validation
  */
   checked?: boolean
+  /**
+   * indique l'incrément que la valeur doit suivre
+   */
+  step?: string | number
+  /**
+   * affiche l'unité du produit
+   */
+  unit? : string
 }
 
 /**
@@ -75,6 +84,7 @@ export type InputTextProps = {
  * @param onScan action du bouton scan
  * @param name le nom/id de l'input
  * @param checked affiche un icone de validation
+ * @param unit affiche l'unité du produit
  */
 export function InputText({
   type,
@@ -89,7 +99,9 @@ export function InputText({
   scanButton,
   onScan,
   useFormName,
-  checked
+  checked,
+  step,
+  unit
 }: InputTextProps) {
 
   // Parametre du composant ---------------------------------------------------------------------
@@ -116,7 +128,7 @@ export function InputText({
     <div className={styles.inputContainer}>
       <div className={styles.container}>
         <input type={inputType} placeholder=" " autoComplete="off" readOnly={readonly} name={name}
-          className={styles.inputField} onChange={onChange} onBlur={onBlur} value={value} onFocus={onFocus}
+          className={styles.inputField} onChange={onChange} onBlur={onBlur} value={value} onFocus={onFocus} step={step}
         />
         <label htmlFor={useFormName} className={styles.inputLabel}>{label}</label>
         {checked &&
@@ -143,6 +155,7 @@ export function InputText({
             <BsUpcScan />
           </div>
         }
+        {unit && <p className={styles.unit}>{unit}</p>}
       </div>
       {errorMessage && (<p className={styles.inputError}>{errorMessage}</p>)}
     </div>

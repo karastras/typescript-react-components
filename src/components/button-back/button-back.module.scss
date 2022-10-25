@@ -1,5 +1,5 @@
 .back{
-    @apply flex w-full pr-btnback-pr bg-color-btnback-bg text-color-btnback-txt font-btnback-txt rounded-btnback border-btnback border-color-btnback-brd shadow-btnback
+    @apply hover:active:opacity-btnback-active cursor-auto flex w-full pr-btnback-pr bg-color-btnback-bg text-color-btnback-txt font-btnback-txt rounded-btnback border-btnback border-color-btnback-brd shadow-btnback
 }
 
 .arrowIcon {
