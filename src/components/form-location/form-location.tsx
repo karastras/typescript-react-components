@@ -40,8 +40,8 @@ export type FormLocationProps = {
  */
   edit?: {
     warehouseCode?: string
-    area?: string
-    palletLocation?: string
+    areaCode?: string
+    locationCode?: string
   }
   /**
 * Label de l'input-combo
@@ -66,7 +66,7 @@ export type FormLocationProps = {
   /**
    * affiche le bouton de scan sur l'input PalletPosition
    */
-  isScanPalletPosition?: boolean
+  isScanLocation?: boolean
   /**
   * label du bouton de scan
   */
@@ -95,6 +95,10 @@ export type FormLocationProps = {
    * option pour fixer le scroll du fond d'écran quand le scan est actif
    */
   scrollFixed?: boolean
+/**
+   * placeholder de l'input combo
+   */
+  inputComboPlaceholder:string
 }
 
 /**
@@ -111,8 +115,8 @@ export type FormLocationProps = {
  * @param locationLabel label de l'input-text 01
  * @param areaLabel label de l'input-text 02
  * @param rulesError01 affiche un message d'erreur via useForm
- * @param isScanArea affiche le bouton de scan sur l'input Area
- * @param isScanPalletPosition affiche le bouton de scan sur l'input PalletPosition
+ * @param isScanArea affiche le bouton de scan sur l'input areaCode
+ * @param isScanLocation affiche le bouton de scan sur l'input locationCode
  * @param scanButtonLabel label du bouton de scan
  * @param scanButtonColor couleur du bouton de scan
  * @param disabled Défini si le bouton est actif
@@ -120,6 +124,7 @@ export type FormLocationProps = {
  * @param buttonId id du bouton
  * @param formId id du formulaire
  * @param scrollFixed option pour fixer le scroll du fond d'écran quand le scan est actif
+ * @param inputComboPlaceholder placeholder de l'input combo
  */
 export function FormLocation({
   onSubmit,
@@ -134,14 +139,15 @@ export function FormLocation({
   areaLabel,
   locationLabel,
   isScanArea,
-  isScanPalletPosition,
+  isScanLocation,
   scanButtonLabel,
   scanButtonColor,
   disabled,
   loading,
   buttonId,
   formId,
-  scrollFixed
+  scrollFixed,
+  inputComboPlaceholder
 }: FormLocationProps) {
 
   /**
@@ -161,8 +167,8 @@ export function FormLocation({
    */
   useEffect(() => {
     setValue("warehouseCode", edit?.warehouseCode)
-    setValue("area", edit?.area)
-    setValue("palletLocation", edit?.palletLocation)
+    setValue("areaCode", edit?.areaCode)
+    setValue("locationCode", edit?.locationCode)
   }, [edit])
 
   useEffect(() => {
@@ -193,6 +199,7 @@ export function FormLocation({
             label={warehouseLabel}
             items={optionList}
             errorMessage={errors.warehouseCode?.message}
+            placeholder={inputComboPlaceholder}
           />)}
         control={control}
         name="warehouseCode"
@@ -205,12 +212,12 @@ export function FormLocation({
           <InputText  {...rest}
             type="text"
             label={areaLabel}
-            errorMessage={errors.area?.message}
-            onScan={() => toggleScanner("area")}
+            errorMessage={errors.areaCode?.message}
+            onScan={() => toggleScanner("areaCode")}
             scanButton={isScanArea}
           />)}
         control={control}
-        name="area"
+        name="areaCode"
         defaultValue={""}
         rules={{ required: rulesError01 }}
       />
@@ -220,14 +227,14 @@ export function FormLocation({
           <InputText  {...rest}
             type="text"
             label={locationLabel}
-            errorMessage={errors.palletPosition?.message}
-            onScan={() => toggleScanner("palletLocation")}
-            scanButton={isScanPalletPosition}
+            errorMessage={errors.locationCode?.message}
+            onScan={() => toggleScanner("locationCode")}
+            scanButton={isScanLocation}
 
           />)}
         control={control}
         defaultValue={""}
-        name="palletLocation"
+        name="locationCode"
         rules={{ required: rulesError01 }}
       />
 

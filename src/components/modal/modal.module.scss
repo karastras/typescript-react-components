@@ -1,9 +1,5 @@
 .modalBackDrop {
-  @apply fixed z-modal-backdrop inset-modal-backdrop bg-color-modal-backdrop-bg bg-opacity-modal-backdrop-bg px-modal-backdrop-px overflow-y-auto h-full w-full 
-}
-
-.modalHidden {
-  @apply hidden
+  @apply fixed z-modal-backdrop inset-modal-backdrop bg-color-modal-backdrop-bg bg-opacity-modal-backdrop-bg px-modal-backdrop-px overflow-y-auto h-full w-full
 }
 
 .modalContainer {
@@ -11,7 +7,7 @@
 }
 
 .modalHeader {
-  @apply flex justify-between items-center bg-color-modal-header-bg text-color-modal-header-txt text-modal-header-txt rounded-t-modal-header-t px-modal-header-px py-modal-header-py
+  @apply text-center bg-color-modal-header-bg text-color-modal-header-txt text-modal-header-txt rounded-t-modal-header-t px-modal-header-px py-modal-header-py
 }
 
 .modalBody {
@@ -19,5 +15,9 @@
 }
 
 .modalFooter {
-  @apply px-modal-footer-px py-modal-footer-py border-t-modal-footer-t border-t-color-modal-footer-brd-t flex gap-modal-footer
+  @apply px-modal-footer-px py-modal-footer-py border-t-modal-footer-t border-t-color-modal-footer-brd-t flex justify-center gap-6
+}
+
+.button{
+  @apply min-w-modal-btn
 }

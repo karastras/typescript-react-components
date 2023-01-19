@@ -1,0 +1,47 @@
+.container {
+    @apply flex flex-col gap-2
+}
+
+.input {
+    @apply w-full p-2 bg-color-upfile-input-bg
+}
+
+.submitSection {
+    @apply flex flex-row-reverse justify-between items-center
+}
+
+.submitButton, .disabledButton, .previewButton, .cancelButton {
+    @apply cursor-auto rounded-upfile-btn px-upfile-btn-px py-upfile-btn-py active:opacity-40 shadow-upfile-btn
+}
+
+.submitButton, .disabledButton{
+    @apply bg-color-upfile-sub-btn-bg text-color-upfile-sub-btn-txt
+}
+
+.cancelButton {
+    @apply bg-color-upfile-cancel-btn-bg text-color-upfile-cancel-btn-txt
+}
+
+.previewButton {
+    @apply bg-color-upfile-pre-btn-bg text-color-upfile-pre-btn-txt w-4/5 m-auto
+}
+
+.disabledButton {
+    @apply opacity-40
+}
+
+.previewContainer {
+    @apply w-full flex flex-col gap-2 mt-upfile-pre-container-mt
+}
+
+.preview {
+    @apply max-h-upfile-preview self-center
+}
+
+.success {
+    @apply text-color-upfile-suc-text
+}
+
+.error {
+    @apply text-color-upfile-err-text
+}

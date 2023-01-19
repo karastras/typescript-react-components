@@ -1,9 +1,9 @@
 .container {
-  @apply relative w-full h-full
+  @apply w-full h-full
 }
 
 .button, .buttonDisabled {
-  @apply cursor-auto text-color-btn-txt h-full w-full font-btn-txt py-btn-py px-btn-px shadow-btn rounded-btn border-btn border-color-btn-brd flex justify-center 
+  @apply relative cursor-auto text-color-btn-txt h-full w-full font-btn-txt py-btn-py px-btn-px shadow-btn rounded-btn border-btn border-color-btn-brd flex justify-center
 }
 
 .button{

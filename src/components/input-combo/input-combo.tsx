@@ -29,6 +29,10 @@ export type InputComboProps = {
    *  option qui désactive l'input-combo
  */
   disabled?: boolean
+/**
+   *  placeholder de l'input, peut être une string vide
+ */
+  placeholder: string
 }
 
 /**
@@ -47,7 +51,8 @@ export function InputCombo ({
                                  items,
                                  disabled = false,
                                  onChange,
-                                 errorMessage
+                                 errorMessage,
+                                 placeholder
                                }: InputComboProps) {
   // Parametre du composant ---------------------------------------------------------------------
   /**
@@ -83,7 +88,7 @@ export function InputCombo ({
     <Downshift
       onStateChange={handleStateChange}
       selectedItem={inputValue || {name: "", value: ""}}
-      itemToString={item => item?.name || ""}
+      itemToString={item => (item ? item.name : "")}
     >
       {({
           getInputProps,
@@ -94,11 +99,15 @@ export function InputCombo ({
           getMenuProps,
           isOpen,
           inputValue,
+          reset
         }) => (
         <div className={styles.comboContainer}>
           <label className={styles.comboLabel} {...getLabelProps()}>{label}</label>
           <div  {...getRootProps(undefined, {suppressRefError: true})}>
-            <input type={"text"} className={styles.comboInput} {...getInputProps({disabled})}/>
+            <input type={"text"} className={styles.comboInput} {...getInputProps({
+                placeholder: placeholder,
+                onChange: reset
+              })}/>
             <button className={isOpen ? styles.comboButtonOpened : styles.comboButtonClosed}
                     type="button"
                     {...getToggleButtonProps({disabled})}

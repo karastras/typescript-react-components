@@ -1,0 +1,23 @@
+.container{
+    @apply rounded-full flex;
+    --width: 53px;
+    --height: 26px;
+    --padding: 3px;
+    width: var(--width);
+    height: var(--height);
+    transition: .2s linear;
+    padding: var(--padding);
+}
+
+.circle{
+    @apply bg-neutral-100 rounded-full;
+    width: calc(var(--height) - var(--padding) * 2);
+    height: calc(var(--height) - var(--padding) * 2);
+    transform: translateX(0);
+    transition: transform 0.3s ease;
+}
+
+.switchedCircle{
+    --offset: calc(var(--width) - var(--height));
+    transform: translateX(var(--offset));
+}

@@ -1,9 +1,9 @@
-.label {
-  @apply absolute -top-txtarea-lbl-t left-txtarea-lbl-l bg-color-txtarea-lbl-bg px-txtarea-lbl-px py-txtarea-lbl-py rounded-txtarea
-}
-
 .container {
   @apply relative 
+}
+
+.label {
+  @apply absolute -top-txtarea-lbl-t left-txtarea-lbl-l bg-color-txtarea-lbl-bg px-txtarea-lbl-px py-txtarea-lbl-py rounded-txtarea
 }
 
 .input {

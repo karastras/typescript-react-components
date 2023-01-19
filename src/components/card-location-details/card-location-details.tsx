@@ -13,18 +13,20 @@ export type CardLocationDetailsProps = {
   *  position: string}
   * la quantité est optionnelle et n'affiche pas de quantité à 0
   */
-  location: {
-    quantity?: number | string
+  item: {
+    quantity?: number
+    palletCode?: string
     warehouseCode?: string
-    area?: string
+    locationCode?: string
+    areaCode?: string
     span?: string
     rack?: string
     level?: string
     position?: string
   }
-/**
-  * label quantité
-  */
+  /**
+    * label quantité
+    */
   quantityLabel?: string
   /**
   * label dépôt
@@ -34,6 +36,10 @@ export type CardLocationDetailsProps = {
   * label zone
   */
   areaLabel: string
+  /**
+  * label emplacement
+  */
+  locationLabel: string
   /**
   * label travée
   */
@@ -51,8 +57,12 @@ export type CardLocationDetailsProps = {
   */
   positionLabel: string
   /**
-  * Message à afficher en cas d'absence de data
+  * label pallet
   */
+  palletLabel: string
+  /**
+ * Message à afficher en cas d'absence de data
+ */
   empty: string
 }
 
@@ -61,8 +71,8 @@ export type CardLocationDetailsProps = {
  *
  * @param location objet passé en props contentant les données à afficher
  */
-export function CardLocationDetails ({
-  location,
+export function CardLocationDetails({
+  item,
   quantityLabel,
   warehouseLabel,
   areaLabel,
@@ -70,37 +80,62 @@ export function CardLocationDetails ({
   rackLabel,
   levelLabel,
   positionLabel,
-  empty
+  empty,
+  palletLabel,
+  locationLabel
 }: CardLocationDetailsProps) {
 
   /**
    * Render
    */
   return (
-      <ul className={styles.container}>
-        {location?.quantity  && location.quantity > 0 ?
-          <li>{quantityLabel}:
-          <span className={styles.element}>{location.quantity}</span>
-        </li> 
+    <ul className={styles.container}>
+      {item?.quantity && item.quantity > 0 ?
+        <li>{quantityLabel}:
+          <span className={styles.element}>{item.quantity}</span>
+        </li>
         : undefined}
+      {item.palletCode &&
+        <li>{palletLabel}:
+          <span className={styles.element}>{item?.palletCode}</span>
+        </li>
+      }
+      {item?.warehouseCode &&
         <li>{warehouseLabel}:
-          <span className={styles.element}>{location?.warehouseCode || empty} </span>
+          <span className={styles.element}>{item?.warehouseCode} </span>
         </li>
+      }
+      {item?.areaCode &&
         <li>{areaLabel}:
-          <span className={styles.element}>{location?.area || empty} </span>
+          <span className={styles.element}>{item?.areaCode} </span>
         </li>
+      }
+      {item?.locationCode &&
+        <li>{locationLabel}:
+          <span className={styles.element}>{item?.locationCode} </span>
+        </li>
+      }
+      {item?.span &&
         <li>{spanLabel}:
-          <span className={styles.element}>{location?.span || empty}</span>
+          <span className={styles.element}>{item?.span}</span>
         </li>
+      }
+      {item?.rack &&
         <li>{rackLabel}:
-          <span className={styles.element}>{location?.rack || empty}</span>
+          <span className={styles.element}>{item?.rack}</span>
         </li>
+      }
+      {item?.level &&
         <li>{levelLabel}:
-          <span className={styles.element}>{location?.level || empty}</span>
+          <span className={styles.element}>{item?.level}</span>
         </li>
+      }
+      {item.position &&
         <li>{positionLabel}:
-          <span className={styles.element}>{location?.position || empty}</span>
+          <span className={styles.element}>{item?.position}</span>
         </li>
-      </ul>
+      }
+      {!item && <li>{empty}</li>}
+    </ul>
   )
 }

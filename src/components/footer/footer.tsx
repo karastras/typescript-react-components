@@ -36,13 +36,13 @@ export function Footer({ appName, settings, path, version }: FooterProps) {
    * Render
    */
     return (
-        <div className={styles.container}>
+        <footer className={styles.footer}>
             <p className={styles.text}>{appName} <span className={styles.by}>by</span> Mismo {version}</p>
             {settings && path &&
                 <Link to={path}>
                     <BiCog className={styles.bicog} />
                 </Link>
             }
-        </div>
+        </footer>
     )
 }

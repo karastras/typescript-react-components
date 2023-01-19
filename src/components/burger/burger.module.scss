@@ -1,0 +1,167 @@
+.button{
+    @apply rounded-lg bg-color-secondary flex items-center flex-col justify-center relative z-40;
+    width: 2.25rem;
+    height: 2.25rem;
+}
+
+.buttonOpen{
+    transition: all .4s linear;
+    @apply bg-color-primary
+}
+
+.buttonClose{
+    transition: all 0.4s linear;
+}
+
+.style, .inverseStyle{
+    margin: 0.15em;
+    height: 0.15em;
+    width: 1.5rem;
+    transform-origin:3px;
+    transition: all 0.3s linear;         
+    @apply bg-color-quaternary rounded-lg;
+}
+
+.inverseStyle{
+    transform-origin:15px;
+}
+
+.open1{
+    transform: translateX(15%) rotate(28deg), ;
+    width: 1.2rem;
+    height: 0.15em;
+    @apply bg-color-quaternary
+}  
+
+.open2{
+    transform: translateX(40%);
+    opacity: 0;
+}  
+
+.open3{
+    transform: translate(15%) rotate(-28deg);
+    width: 1.2rem;
+    height: 0.15em;
+    @apply bg-color-quaternary
+}
+
+.inverseOpen1{
+    transform: translateX(-15%) rotate(-28deg), ;
+    width: 1.2rem;
+    height: 0.15em;
+    @apply bg-color-quaternary
+}  
+
+.inverseOpen2{
+    transform: translateX(-40%);
+    opacity: 0;
+}  
+
+.inverseOpen3{
+    transform: translate(-15%) rotate(28deg);
+    width: 1.2rem;
+    height: 0.15em;
+    @apply bg-color-quaternary
+}
+
+.container{
+    @apply flex fixed right-0 top-0 z-30 w-full h-full
+}
+
+.inverseContainer{
+    @apply flex flex-row-reverse fixed left-0 top-0 z-30 w-full h-full
+}
+
+.list{
+    @apply w-1/2 h-full  flex flex-col justify-center items-center gap-4 text-color-secondary border-color-quaternary border-l-2;
+    background: linear-gradient(
+            30deg,
+            #888888,
+            #C0C0C0,
+            #B0B0B0,
+            #DCDCDC,
+            #B0B0B0,
+            #C0C0C0,
+            #888888
+        );
+}
+
+.inverseList{
+    @apply w-1/2 h-full  flex flex-col justify-center items-center gap-4 text-color-secondary border-color-quaternary border-r-2;
+    background: linear-gradient(
+            30deg,
+            #888888,
+            #C0C0C0,
+            #B0B0B0,
+            #DCDCDC,
+            #B0B0B0,
+            #C0C0C0,
+            #888888
+        );
+}
+
+.hiddenSection{
+    @apply w-1/2
+}
+
+.element{
+    @apply flex flex-col gap-2 w-full items-center
+}
+
+.link{
+    @apply self-baseline font-bold text-medium;
+}
+
+.openContainer{
+    transform: translateX(0);
+    transition: transform 0.5s ease;
+}
+
+.closeContainer{                
+    transform: translateX(100%);
+    // Pose un soucis d'affichage quand la page est rafraichis ou quand le bouton changement de main est activé
+    visibility: hidden;
+    transition: transform 0.3s linear, visibility 0s 0.3s;
+}
+
+.inverseOpenContainer{
+    transform: translateX(-0%);
+    transition: transform 0.5s ease;
+}
+
+.inverseCloseContainer{                
+    transform: translateX(-100%);
+    visibility: hidden;
+    transition: transform 0.3s linear, visibility 0s 0.3s;
+}
+
+.activeLink{
+    @apply text-color-quaternary font-bold text-medium;
+}
+
+.logout{
+    @apply flex gap-1 items-center
+}
+
+.content{
+    @apply flex justify-center items-center h-full
+}
+
+.bipower{
+    @apply bg-color-head-icon-pwr-bg rounded-full text-color-head-icon-pwr-txt p-1
+}
+
+.hr{
+    @apply w-5/6
+}
+
+
+        
+    
+
+
+
+
+    
+
+

@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { uneAction, autreAction, resetAction } from '../../features/exemple/Exemple.slice'
 import { exempleTest } from '../../features/exemple/Exemple.slice';
 import { InputText } from '../../components/inputText/input-text'
@@ -24,8 +24,9 @@ import { EditableCell, RemoveItemCell, TableSimple } from '../../components/tabl
 import { InputTextarea } from '../../components/input-textarea/input-textarea';
 import { BsUpcScan } from "react-icons/bs"
 import {Loading} from '../../components/loading/Loading';
-import { Link, useNavigate } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
+import { SwitchButton } from '../../components/switchButton/SwitchButton';
+import { useAppDispatch } from '../../app/store';
 
 const ExemplePage = () => {
   
@@ -33,7 +34,7 @@ const { handleSubmit, formState: { errors }, setValue, control, watch} = useForm
 
 const ware = watch('warehouse')
 useEffect(()=>{
- if (ware == ""){
+ if (ware === ""){
   setValue("warehouse", "")
  }
 }, [ware])
@@ -54,6 +55,8 @@ const productData = {
     unit: "Pce"
   }
 
+const dispatch = useAppDispatch()
+
 const onSubmit = handleSubmit((data) => {console.log(data,"DATA")})
 
 function handleBlur (e: any) {console.log(e.target.value, "TARGET")  }
@@ -62,7 +65,9 @@ function handleBlur (e: any) {console.log(e.target.value, "TARGET")  }
     {
         quantity: 120,
         warehouse: "Dépot Central",
-        area : "METAL",
+        palletCode: "B852452GF2558HGR252",
+        locationCode: "020003",
+        areaCode : "METAL",
         span: undefined,
         rack: "03A",
         level: "2",
@@ -71,14 +76,15 @@ function handleBlur (e: any) {console.log(e.target.value, "TARGET")  }
     {
         quantity: 0,
         warehouse: "Dépot Secondaire",
-        area : "ZR01",
+        palletCode: undefined,
+        locationCode: undefined,
+        areaCode : "ZR01",
         span: "A63",
         rack: undefined,
         level: undefined,
         position: undefined,
     }]
 
-  const dispatch = useDispatch()
   const exemple = useSelector(exempleTest)
 
   const [isTesting, setIstesting] = useState<boolean>(false)
@@ -94,12 +100,8 @@ function handleBlur (e: any) {console.log(e.target.value, "TARGET")  }
   },[isChecked])
 
   function onClickTest() {
-    setIstesting(true)
-    setLoading(true)
-    setTimeout(() => {
-      setIstesting(false)
-      setLoading(false)
-    }, 3000)
+    setIstesting(!isTesting)
+    setLoading(!loading)
   }
 
   function onClick() {
@@ -114,7 +116,7 @@ function handleBlur (e: any) {console.log(e.target.value, "TARGET")  }
  const [cancelLabel, setCancelLabel] = useState<string>()
  const [modalOnConfirm, setModalOnConfirm] = useState<Function>()
  const [modalOnCancel, setModalOnCancel] = useState<Function>()
- const [userName, setuserName] = useState<string>("")
+ const [userName, setuserName] = useState<string>("plop")
 
 function handleDisconnectButton() {
   setModalHeader("plop")
@@ -150,6 +152,7 @@ function handleDisconnectButton() {
 
 
   function toggleScanner(id: string | null = null) {
+    setScannedData('')
     setIsActivedScanner(!isActivedScanner)
     if (id) { setInputName(id) }
   }
@@ -228,7 +231,6 @@ function updateMyData() {
   
   return (
     <div className={styles.container}>
-      
       <h1>je suis ExemplePage avec mon State = <span className={styles.bold}>{exemple.test}</span></h1>
       <div >{ loading && <Loading /> }</div>
       <div className={styles.buttons}>
@@ -241,7 +243,7 @@ function updateMyData() {
               name='Valider'
               type='button'
               disabled={!isTesting}
-              onClick={()=>{navigate('/exemplePage/next')}}
+              onClick={()=>{navigate('/page02')}}
             />
           </div>
           <div className='w-32'>
@@ -271,19 +273,20 @@ function updateMyData() {
             <Button color='primary'
               type='button'
               onClick={updateMyData}
-              icon={<BsUpcScan size={"2rem"} />}
+              icon={<BsUpcScan size={"2.4rem"} />}
             />
           </div>
           <div className='w-full'>
             <Button color='primary'
-            name='Ca va Tourner!'
+              name='Ca va Tourner!'
               type='button'
               loading={isTesting}
-              onClick={onClickTest}
-              icon={<BsUpcScan size={"2rem"} />}
-              disabled
+              onClick={ ()=>navigate('/formulaire/etape-une') }
+              icon={<BsUpcScan size={"2.4rem"} />}
+              disabled={!loading}
             />
           </div>
+
           <TableSimple columns={columns}
                 data={data}
                 updateMyData={()=>updateMyData()}
@@ -292,6 +295,12 @@ function updateMyData() {
                 animeFirstTr
           />
         </div>
+
+        <SwitchButton cursorPosition={isChecked}
+         setCursorPosition={setIsChecked}
+         switchColor={'bg-red-500'}
+         color={'bg-green-200'}
+          />
           
         <Checkbox label={isChecked? "décochez-moi!!!!" : 'cochez-moi!'}
           name='plop'
@@ -335,10 +344,10 @@ function updateMyData() {
                               label="Dépot"
                               items={lol}
                               errorMessage={""}
+                              placeholder='je suis le placeholder'
                   />)}
                 control={control}
                 name="warehouse"
-                defaultValue={"LOL"}
                 rules={{required: "Le champs est obligatoire"}}
         />
         <CardLocation area={"Dépôt central"}
@@ -358,15 +367,17 @@ function updateMyData() {
         <div key={index}>
             {index > 0 && <hr />}
             <div>
-            <CardLocationDetails  location={location}
+            <CardLocationDetails  item={location}
                                   quantityLabel='Quantité'
                                   areaLabel="Zone"
+                                  palletLabel='Palette'
                                   levelLabel='Niveau'
                                   positionLabel='Position'
                                   rackLabel='Rack'
                                   spanLabel='Travée'
                                   warehouseLabel='Dépôt'
                                   empty='Non-renseigné'
+                                  locationLabel='Emplacement'
             />
             </div>
         </div>
@@ -401,10 +412,11 @@ function updateMyData() {
                     optionList={lol}
                     locationError={"ERROR"}
                     isScanArea
-                    isScanPalletPosition
+                    isScanLocation
                     scanButtonColor='secondary'
                     scanButtonLabel='Annuler'
                     scrollFixed
+                    inputComboPlaceholder='Aucun dépôt renseigné'
 
     />
 
@@ -419,10 +431,11 @@ function updateMyData() {
                 optionList={lol}
                 locationError={"ERROR"}
                 isScanArea
-                isScanPalletPosition
+                isScanLocation
                 scanButtonColor='secondary'
                 scanButtonLabel='Annuler'
                 scrollFixed
+                inputComboPlaceholder='Aucun dépôt'
 />
     
 <FormProductAndQuantity title='Article et quantité'
@@ -483,17 +496,17 @@ function updateMyData() {
             homeIcon
             onHome={()=>navigate('/')}
     />
-    <Modal  onConfirm={modalOnConfirm}
+    {modalMessage &&
+      <Modal  
             onCancel={modalOnCancel}
             header={modalHeader}
             message={modalMessage}
             cancelLabel={cancelLabel}
+            onConfirm={modalOnConfirm}
             confirmLabel={confirmLabel}
             colorConfirm='secondary'
             colorCancel='primary'
-      />
-
-    
+      />}
 
     <InputTextarea  label='Description du produit'
                     placeholder='Scanner un produit pour afficher sa description'
@@ -507,3 +520,65 @@ function updateMyData() {
 }
 
 export default ExemplePage
+
+// useEffect(()=>{
+    
+
+//   (async () => {
+//     setIsLoading(true);
+
+//     const jobs = [];
+
+//     jobs.push(getStateReference().unwrap()
+//     .then((res)=> setStateOption(res))
+//     .catch((err)=>{console.log(err)}))
+
+//     jobs.push(getPrioriryReference().unwrap()
+//     .then((res)=> setPriorityOption(res))
+//     .catch((err)=>{console.log(err)}))
+
+//     await Promise.all(jobs)
+//     setIsLoading(false);
+    
+//     setIsLoading(true);
+
+//     try {
+//     const [states, priorities] = await Promise.all([getStateReference().unwrap(), getPrioriryReference().unwrap()]);
+//     setStateOption(states);
+//     setPriorityOption(priorities);
+//     } catch( err ) {
+//       console.error(err);
+//     }
+
+//     setIsLoading(false);
+
+//   })();
+
+
+//   (async () => {
+  
+//     try
+//     {
+//       const response = await fetch('')
+//       const json = await response.json()
+//       const x = await Promise.all([])
+//       console.info(`TRUC ${x} : ${json}`)
+//     }
+//     catch( ex )
+//     {
+//       console.error(`ERROR ${ex}`)
+//     }
+
+//   })();
+
+//   (() => {
+  
+//     fetch('')
+//     .then(response => response.json()
+//     .then(json => Promise.all([])
+//     .then(x => console.info(`TRUC ${x} : ${json}`))))
+//     .catch(ex => console.error(`ERROR ${ex}`))
+
+//   })()
+ 
+// },[])

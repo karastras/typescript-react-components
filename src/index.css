@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 /* Chrome disabled blue highlight on link */
-a:active {
+a, input, button {
     -webkit-tap-highlight-color: transparent;
+  }
+  
+button:hover:active {
+opacity: .4;
 }

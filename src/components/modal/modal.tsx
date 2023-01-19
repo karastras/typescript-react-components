@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button } from "../button/button";
 import styles from "./modal.module.scss"
 
@@ -65,25 +65,37 @@ export function Modal({ header, message, onCancel, onConfirm, colorConfirm, colo
     onConfirm && onConfirm()
   }
 
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return ()=>{
+      document.body.style.overflow = 'unset';
+    }
+  }, []);
+
   /**
    * Render
    */
   return (
-    <div id="modal"
-      className={styles.modalBackDrop + " " + (!message && styles.modalHidden)}>
+    <div id="modal" className={styles.modalBackDrop}>
       <div className={styles.modalContainer}>
-        <div className={styles.modalHeader}>
-          <h3>{header}</h3>
-        </div>
+        {header &&
+          <div className={styles.modalHeader}>
+            <h3>{header}</h3>
+          </div>
+        }
         <div className={styles.modalBody}>
           <p>{message}</p>
         </div>
         <div className={styles.modalFooter}>
           {(onCancel && cancelLabel && colorCancel) &&
-            <Button type="button" name={cancelLabel} color={colorCancel} onClick={handleCancelClick} />
+            <div className={styles.button}>
+              <Button type="button" name={cancelLabel} color={colorCancel} onClick={handleCancelClick} />
+            </div>
           }
           {(onConfirm && confirmLabel && colorConfirm) &&
-            <Button type="button" name={confirmLabel} color={colorConfirm} onClick={handleConfirmClick} />
+            <div className={styles.button}>
+              <Button type="button" name={confirmLabel} color={colorConfirm} onClick={handleConfirmClick} />
+            </div>
           }
         </div>
       </div>

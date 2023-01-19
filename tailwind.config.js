@@ -47,6 +47,8 @@ module.exports = {
                 'bcdscan-cam': '.375rem',
                 /* component loading */
                 'loading-logo': '50%',
+                /* component upload-file */
+                'upfile-btn': '.5rem',
             },
             borderWidth: { /* syntaxe => 'border-btn' */
                 DEFAULT: '2px',
@@ -101,6 +103,8 @@ module.exports = {
                 /* component routing-button-card -RBC- */
                 'RBC-simplebtn': '0.1em 0.1em 0.2em 0.1em rgba(0,0,0,0.3)',
                 'RBC-cardetails': '0.1em 0.1em 0.2em 0.1em rgba(0,0,0,0.3)',
+                /* component upload-file */
+                'upfile-btn': '0.2em 0.2em 0.2em 0em rgba(127, 127, 127, 0.3)',
             },
             colors: { /* syntaxe => 'xxx-color-btn' */
                 'color-primary': '#7FC31C'/* green */,
@@ -200,6 +204,8 @@ module.exports = {
                 'color-modal-header-bg': '#7FC31C'/* green */,
                 'color-modal-header-txt': '#FFFFFF'/* white */,
                 'color-modal-footer-brd-t': '#444051'/* dark-gray */,
+                /* component progress-step-bar */
+                'color-progstepbar-title': '#111827'/* x-dark-gray */,
                 /* component routing-button-card -RBC- */
                 'color-RBC-simplebtn-txt': '#FFFFFF'/* white */,
                 'color-RBC-simplebtn-bg': '#7FC31C'/* green */,
@@ -218,6 +224,16 @@ module.exports = {
                 'color-tab-td-last-bg': '#FFFFFF'/* white */,
                 'color-tab-icon-del-txt': '#dc2626'/* red */,
                 'color-tab-icon-del-bg': '#FFFFFF'/* white */,
+                /* component upload-file */
+                'color-upfile-input-bg': '#BFDBFE'/* light-blue */,
+                'color-upfile-sub-btn-bg': '#7FC31C'/* green */,
+                'color-upfile-sub-btn-txt': '#FFFFFF'/* white */,
+                'color-upfile-cancel-btn-bg': '#dc2626'/* red */,
+                'color-upfile-cancel-btn-txt': '#FFFFFF'/* white */,
+                'color-upfile-pre-btn-bg': '#28509e'/* blue */,
+                'color-upfile-pre-btn-txt': '#FFFFFF'/* white */,
+                'color-upfile-suc-text': '#7FC31C'/* green */,
+                'color-upfile-err-text': '#DC2626'/* white */,
             },
             fontFamily: { /* syntaxe => 'font-btn' */
                 'sans': ['Unbuntu', 'sans-serif']
@@ -268,11 +284,13 @@ module.exports = {
                 'head-user': '1.4rem',
                 'head-icon-pwr-txt': '2.2rem',
                 'head-icon-left-txt': '2.2rem',
-                'head-icon-user-txt': '2rem',
-                'head-icon-wifioff-txt': '2rem',
-                'head-icon-wifion-txt': '2rem',
+                'head-icon-user-txt': '2.2rem',
+                'head-icon-wifioff-txt': '2.2rem',
+                'head-icon-wifion-txt': '2.2rem',
                 /* component modal */
                 'modal-header-txt': '1.25rem',
+                /* component progress-step-bar */
+                'progstepbar-title': '1rem',
                 /* component routing-button-card -RBC- */
                 'RBC-container': ['1.4rem', 1],
                 'RBC-description': ['0.7rem', 0.8],
@@ -290,8 +308,6 @@ module.exports = {
                 'inptxt-unit': 700,
                 /* component basic/button */
                 'btn-txt': 600,
-                /* component input-combo */
-                'inpcomb-errtxt': '700',
                 /* component button-back */
                 'btnback-txt': 700,
                 /* component checkbox */
@@ -311,15 +327,21 @@ module.exports = {
                 'formprodqua-errtxt': 700,
                 /* component form-server-config */
                 'formservconf-errtxt': 700,
-                /* component single-input */
-                'singinp-errtxt': 700,
                 /* component header */
                 'head-user': 700,
+                /* component input-combo */
+                'inpcomb-errtxt': '700',
+                /* component progress-step-bar */
+                'progstepbar-title': 700,
+                /* component single-input */
+                'singinp-errtxt': 700,
                 /* component table/table-simple */
                 'tab-th': 700,
                 'tab-td': 500,
             },
             gap: { /* syntaxe => 'gap-btn' */
+                /* component barecode-scanner */
+                'bcdscan': '.5rem',
                 /* component basic/button */
                 'btn-mix': '.5rem',
                 /* component input-text */
@@ -340,15 +362,15 @@ module.exports = {
                 /* component form-server-config */
                 'formservconf-form': '1rem',
                 'formservconf-btns': '.5rem',
-                /* component single-input */
-                'singinp-form': "1rem",
                 /* component modal */
                 'modal-footer': '1rem',
+                /* component progress-step-bar */
+                'progstepbar-cont': '.5rem',
                 /* component routing-button-card -RBC- */
                 'RBC-cardetails': '.75rem',
                 'RBC-container': '.5rem',
-                /* component barecode-scanner */
-                'bcdscan': '.5rem',
+                /* component single-input */
+                'singinp-form': "1rem",
             },
             height: { /* syntaxe => 'h-btn' */
                 /* component checkbox */
@@ -356,7 +378,10 @@ module.exports = {
                 /* component basic/button */
                 'btn-icon': '2.5rem',
                 /* component barecode-scanner */
-                'bcdscan-container': '100vh'
+                'bcdscan-container': '100vh',
+                /* component progress-step-bar */
+                'progstepbar-bar-cont': '.25rem',
+                'progstepbar-bar': '.25rem',
             },
             inset: { /* syntaxe => 'inset-btn' */
                 /* component modal */
@@ -388,14 +413,23 @@ module.exports = {
                 'modal-container-mx': 'auto',
                 /* component barecode-scanner */
                 'bcdscan-content-mx': '0rem',
+                /* component upload-file */
+                'upfile-pre-container-mt': '1.5rem',
             },
             maxHeight: { /* syntaxe => 'max-h-btn' */
                 /* component modal */
                 'modal-body': '12rem',
+                /* component upload-file */
+                'upfile-preview': '15rem',
+
             },
             maxWidth: { /* syntaxe => 'max-w-btn' */
                 /* component modal */
                 'modal-container': '28rem',
+            },
+            minWidth: {
+                /* component modal */
+                'modal-btn': '7rem',
             },
             opacity: { /* syntaxe => 'opacity-btn' */
                 /* component button */
@@ -457,10 +491,13 @@ module.exports = {
                 'tab-th-py': '1rem',
                 'tab-td-py': '.5rem',
                 'tab-td-px': '0.25rem',
+                /* component upload-file */
+                'upfile-btn-px': '.5rem',
+                'upfile-btn-py': '.25rem'
             },
             spacing: { /* syntaxe => "top-btn" */
                 /* component basic/button */
-                'btn-load-t': '1rem',
+                'btn-load-t': '.8rem',
                 'btn-load-l': "1rem",
                 /* component input-text */
                 'inptxt-lbl-t': "0rem",
@@ -503,6 +540,8 @@ module.exports = {
                 //-----------------------------------------------------//
                 /* component input-text */
                 'inptxt-lbl': '.3s',
+                /* component progress-step-bar */
+                'progstepbar': '1s',
             },
             width: { /* syntaxe => 'w-btn' */
                 /* component checkbox */
@@ -516,6 +555,9 @@ module.exports = {
                 'tab-input': '100%',
                 /* component loading */
                 'loading-logo': '4rem',
+                /* component progress-step-bar */
+                'progstepbar-bar-cont': '2.5rem',
+                'progstepbar-bar': '0rem',
             },
             zIndex: { /* syntaxe => 'z-btn' */
                 "-1": "-1",

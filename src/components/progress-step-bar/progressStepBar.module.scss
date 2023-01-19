@@ -1,0 +1,79 @@
+.container {
+    @apply flex flex-col gap-progstepbar-cont my-2
+}
+
+.titleSection {
+    @apply text-center text-progstepbar-title font-progstepbar-title text-color-progstepbar-title
+}
+
+.progress{
+    @apply flex w-full justify-center
+}
+
+.step{
+    @apply flex items-center
+}
+
+.barContainer{
+    @apply w-progstepbar-bar-cont h-progstepbar-bar-cont flex items-center bg-neutral-200
+}
+
+.bar{
+    @apply w-progstepbar-bar h-progstepbar-bar duration-progstepbar
+}
+
+.validBar{
+    @apply bg-color-primary w-full
+}
+
+.currentBar{
+    @apply bg-purple-600 w-1/2
+}
+
+.currentCircle, .currentBar{
+    @apply bg-purple-600;
+}
+
+.circle{
+    @apply border-2 border-neutral-200 rounded-full h-8 w-8 flex justify-center font-bold p-0 duration-progstepbar
+}
+
+.currentCircle{
+    @apply border-purple-600 text-color-quaternary duration-progstepbar
+}
+
+.validCircle{
+    @apply bg-color-primary border-color-primary;
+    transform: rotateY(180deg);
+}
+
+.circle::before, .circle::after
+{
+    @apply h-8 w-8 leading-8 -ml-4 -mr-4 p-0 align-top text-center inline-block invisible;
+    margin-top: -2px;
+    content: "";
+    transition: visibility 0s .3s;
+}
+
+.circle::before 
+{
+    content: attr(data-step);
+}
+
+.circle::after
+{
+    content: '\2713';
+    transform: rotateY(180deg);
+    transform-origin: center;
+    color: white;
+}
+
+.stepNumber::before
+{
+    @apply visible
+}
+
+.validIcon::after
+{
+    @apply visible
+}

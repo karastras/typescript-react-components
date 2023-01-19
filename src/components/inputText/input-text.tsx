@@ -128,9 +128,9 @@ export function InputText({
     <div className={styles.inputContainer}>
       <div className={styles.container}>
         <input type={inputType} placeholder=" " autoComplete="off" readOnly={readonly} name={name}
-          className={styles.inputField} onChange={onChange} onBlur={onBlur} value={value} onFocus={onFocus} step={step}
+          className={styles.inputField} onChange={onChange} aria-labelledby={`${name}-label`} onBlur={onBlur} value={value} onFocus={onFocus} step={step}
         />
-        <label htmlFor={useFormName} className={styles.inputLabel}>{label}</label>
+        <label htmlFor={useFormName} id={`${name}-label`} className={styles.inputLabel}>{label}</label>
         {checked &&
           <div className={scanButton ? `${styles.checkAndScanIcon}` : `${styles.checkIcon}`}>
             <BsCheckLg />

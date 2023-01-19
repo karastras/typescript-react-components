@@ -10,7 +10,7 @@ export type BackButtonProps = {
   /**
  * Label affiché sur le bouton (sert essentiellement en cas de traduction)
  */
-  label: string
+  label?: string
 }
 
 /**
@@ -26,7 +26,7 @@ export function BackButton ({onBackButton, label}: BackButtonProps) {
   return (
     <button className={styles.back} onClick={onBackButton}>
         <BiChevronLeft className={styles.arrowIcon} />
-        <p>{label}</p>
+        {label && <p>{label}</p>}
     </button>
   )
 }

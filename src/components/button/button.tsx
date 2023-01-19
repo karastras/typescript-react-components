@@ -71,6 +71,9 @@ export function Button ({
              disabled={disabled}
              id={buttonId}
       >
+        {loading && 
+          <BiLoader className={styles.loadingLogo}/>
+        }
         {name && !icon && name} {icon && !name && <span className={styles.icon}>{icon}</span>}
         {name && icon && 
           <div className={styles.mix}>
@@ -78,9 +81,6 @@ export function Button ({
             <span className={styles.icon}>{icon}</span> 
              
           </div> 
-        }
-        {loading && 
-          <BiLoader className={styles.loadingLogo}/>
         }
       </button>
     </div>

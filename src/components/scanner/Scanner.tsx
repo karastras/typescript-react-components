@@ -39,19 +39,15 @@ export type BarcodeScannerProps = {
  */
 export function BarcodeScanner( {setData, onClickButton, buttonLabel, buttonColor, scrollFixed}: BarcodeScannerProps) {
 
-  // Hook pour exécuter une action lors du montage du composant en fonction du props plop
+  // Hook pour bloquer le scroll de l'app
   useEffect(()=>{
     if (scrollFixed) {
       document.body.style.overflow = 'hidden'
+      return () => { 
+      document.body.style.overflow = 'unset'
+      }
     }
   },[])
-
-  // Hook pour exécuter une action lors du démontage du composant
-  useEffect(() => {
-      return () => { 
-        document.body.style.overflow = 'unset'
-    }
-  }, [])
 
   return (
     <div className={styles.container}>

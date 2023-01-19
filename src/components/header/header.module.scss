@@ -1,9 +1,10 @@
 .container {
-    @apply flex justify-between
+    @apply flex justify-between;
+    align-items: baseline;
 }
 
 .right {
-    @apply flex gap-1 items-center
+    @apply flex gap-1
 }
 
 .username{
